@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar da Câmara — o que cada vereador faz, com dados oficiais</title>
+<meta name="description" content="Presença, propostas, votos, gastos e licitações das câmaras municipais, só com dados oficiais.">
+<style>
+:root{--bg:#fff;--soft:#f5f7f6;--line:#e3e8e5;--ink:#17211c;--mut:#5d6b64;--ac:#0b6b4f;--ac2:#e6f3ee}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--line)}
+header .wrap{padding:12px 16px;font-weight:800;font-size:18px}
+header span{color:var(--ac)}
+h1{font-size:clamp(28px,5.5vw,42px);line-height:1.12;letter-spacing:-.02em;margin:40px 0 12px}
+p.lead{color:var(--mut);max-width:620px;margin:0 0 28px}
+.cidades{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+a.cid{display:block;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:18px;color:var(--ink);text-decoration:none}
+a.cid:hover{border-color:var(--ac)}
+a.cid b{display:block;font-size:20px}
+a.cid small{color:var(--mut)}
+.breve{border:1px dashed var(--line);border-radius:14px;padding:18px;color:var(--mut)}
+footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
+</style>
+</head>
+<body>
+<header><div class="wrap">Radar <span>da Câmara</span></div></header>
+<main class="wrap">
+  <h1>O que cada vereador faz, com dados oficiais.</h1>
+  <p class="lead">Presença nas sessões, propostas, votos, gastos e licitações da câmara da sua cidade, organizados a partir dos sistemas públicos e com link para a fonte.</p>
+  <div class="cidades">
+    <a class="cid" href="/sinop/"><b>Sinop</b><small>Mato Grosso</small></a>
+    <div class="breve">Outras cidades de MT em breve.</div>
+  </div>
+  <footer>Radar da Câmara · projeto independente de transparência · só dados públicos.</footer>
+</main>
+</body>
+</html>
