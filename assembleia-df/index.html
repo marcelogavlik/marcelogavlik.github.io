@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Radar da Câmara · Assembleia de DF — o que cada deputado faz, com dados oficiais</title>
-<meta name="description" content="Presença, propostas, homenagens, pedidos por bairro e votos dos deputados estaduais de Distrito Federal-MT, só com dados oficiais da Assembleia.">
+<title>Radar da Câmara · Câmara Legislativa do DF — o que cada deputado faz, com dados oficiais</title>
+<meta name="description" content="Presença, propostas, homenagens, pedidos por bairro e votos dos deputados distritais do Distrito Federal, só com dados oficiais da Câmara Legislativa.">
 <style>
 :root{
   --bg:#fff; --soft:#f5f7f6; --line:#e3e8e5; --ink:#17211c; --mut:#5d6b64;
@@ -138,7 +138,7 @@ h4{margin:22px 0 4px;font-size:16px}
 <body>
 
 <header class="top"><div class="wrap">
-  <div class="logo"><a href="/" style="color:inherit;text-decoration:none">Radar da Câmara</a> <span>· Assembleia de DF</span></div>
+  <div class="logo"><a href="/" style="color:inherit;text-decoration:none">Radar da Câmara</a> <span>· Câmara Legislativa do DF</span></div>
   <nav>
     <a href="#busca">Sua cidade</a>
     <a href="#repetidos">Pedidos que voltam</a>
@@ -148,7 +148,7 @@ h4{margin:22px 0 4px;font-size:16px}
     <a href="#faltas">Faltas</a>
     <a href="#deputados">Deputados</a>
     <a href="#votos">Votos</a>
-    <a href="#prefeitura">Governo do Estado</a>
+    <a href="#prefeitura">Governo do Distrito Federal</a>
     <a href="#licitacoes">Licitações</a>
     <a href="#transparencia">De onde vêm os dados</a>
   </nav>
@@ -157,9 +157,9 @@ h4{margin:22px 0 4px;font-size:16px}
 <main class="wrap">
   <div class="hero">
     <span class="pill" id="atualizado">carregando…</span>
-    <h1>O que cada deputado estadual de Distrito Federal fez desde que tomou posse</h1>
-    <p>Presença nas sessões, propostas, homenagens, pedidos de melhoria e votos. Tudo tirado do sistema da própria Assembleia Legislativa, com link para conferir.</p>
-    <p>Site independente, feito por morador. Sem ligação com a Assembleia, o Governo do Estado ou partido. Não dá nota nem opinião: só mostra o dado.</p>
+    <h1>O que cada deputado distrital do Distrito Federal fez desde que tomou posse</h1>
+    <p>Presença nas sessões, propostas, homenagens, pedidos de melhoria e votos. Tudo tirado do sistema da própria Câmara Legislativa, com link para conferir.</p>
+    <p>Site independente, feito por morador. Sem ligação com a Câmara Legislativa, o Governo do Distrito Federal ou partido. Não dá nota nem opinião: só mostra o dado.</p>
     <div class="contador" id="contador" hidden></div>
     <div class="nums" id="nums"></div>
   </div>
@@ -175,7 +175,7 @@ h4{margin:22px 0 4px;font-size:16px}
   <section id="repetidos">
     <h2>Pedidos que voltam</h2>
     <p class="sub">Quando o mesmo tipo de pedido aparece três vezes ou mais para a mesma rua ou avenida.</p>
-    <div class="aviso">Pedido repetido não prova que o Governo do Estado ignorou. O sistema da Assembleia não informa se a obra foi feita. Às vezes são trechos diferentes da mesma via.</div>
+    <div class="aviso">Pedido repetido não prova que o Governo do Distrito Federal ignorou. O sistema da Câmara Legislativa não informa se a obra foi feita. Às vezes são trechos diferentes da mesma via.</div>
     <div id="repLista"></div>
   </section>
 
@@ -191,7 +191,7 @@ h4{margin:22px 0 4px;font-size:16px}
   <section id="emendas">
     <h2>Emendas: para onde cada deputado mandou dinheiro</h2>
     <p class="sub">Cada deputado pode indicar o destino de uma parte do orçamento da cidade. Aqui está quanto cada um indicou e para qual área, somando o valor escrito em cada emenda.</p>
-    <div class="aviso">Estes são os valores <b>indicados</b> nas emendas apresentadas na Assembleia. O sistema da Assembleia não informa quanto o Governo do Estado de fato pagou. A execução ainda não está neste site.</div>
+    <div class="aviso">Estes são os valores <b>indicados</b> nas emendas apresentadas na Câmara Legislativa. O sistema da Câmara Legislativa não informa quanto o Governo do Distrito Federal de fato pagou. A execução ainda não está neste site.</div>
     <div id="emBox"></div>
   </section>
 
@@ -227,7 +227,7 @@ h4{margin:22px 0 4px;font-size:16px}
 
   <section id="votos">
     <h2>Votos: quem votou em quê</h2>
-    <p class="sub">Procure um projeto e veja o voto de cada deputado, compare os partidos entre si ou veja as votações em que a Assembleia não votou junto.</p>
+    <p class="sub">Procure um projeto e veja o voto de cada deputado, compare os partidos entre si ou veja as votações em que a Câmara Legislativa não votou junto.</p>
     <div id="votosResumo"></div>
     <div class="abas" id="abas">
       <button data-aba="proj" class="on">Por projeto</button>
@@ -246,14 +246,14 @@ h4{margin:22px 0 4px;font-size:16px}
   </section>
 
   <section id="prefeitura">
-    <h2>Governo do Estado: o que o governador mandou para a Assembleia</h2>
-    <p class="sub">Projetos de lei enviados pelo Poder Executivo e os vetos a leis aprovadas pelos deputados, com a situação que o sistema da Assembleia informa.</p>
+    <h2>Governo do Distrito Federal: o que o governador do DF mandou para a Câmara Legislativa</h2>
+    <p class="sub">Projetos de lei enviados pelo Poder Executivo e os vetos a leis aprovadas pelos deputados, com a situação que o sistema da Câmara Legislativa informa.</p>
     <div id="execBox"></div>
   </section>
 
   <section id="licitacoes">
-    <h2>Licitações: o que a Assembleia e o Governo do Estado compraram</h2>
-    <p class="sub">Compras publicadas no Portal Nacional de Contratações Públicas (PNCP): o que foi comprado, de quem e por quanto. Nos materiais, o preço que Distrito Federal pagou aparece ao lado do que outras cidades de Distrito Federal pagaram por item parecido.</p>
+    <h2>Licitações: o que a Câmara Legislativa e o Governo do Distrito Federal compraram</h2>
+    <p class="sub">Compras publicadas no Portal Nacional de Contratações Públicas (PNCP): o que foi comprado, de quem e por quanto. Nos materiais, o preço que Distrito Federal pagou aparece ao lado do que outras cidades do Distrito Federal pagaram por item parecido.</p>
     <div class="nums" id="licNums"></div>
     <div class="abas" id="licAbas">
       <button data-aba="cmp" class="on">Preço comparado</button>
@@ -264,7 +264,7 @@ h4{margin:22px 0 4px;font-size:16px}
     <div id="lic-com" hidden>
       <div class="row">
         <input type="search" id="qLic" placeholder="Ex.: combustível, merenda, notebook, nome da empresa…" autocomplete="off">
-        <select id="fLicOrg"><option value="">Câmara e Governo do Estado</option><option>Câmara</option><option>Governo do Estado</option></select>
+        <select id="fLicOrg"><option value="">Câmara e Governo do Distrito Federal</option><option>Câmara</option><option>Governo do Distrito Federal</option></select>
       </div>
       <div id="licLista"></div>
     </div>
@@ -278,13 +278,13 @@ h4{margin:22px 0 4px;font-size:16px}
 </main>
 
 <footer><div class="wrap">
-  Radar da Câmara · Assembleia de DF · projeto independente de transparência · dados públicos da Assembleia Legislativa de Distrito Federal.
+  Radar da Câmara · Câmara Legislativa do DF · projeto independente de transparência · dados públicos da Câmara Legislativa do Distrito Federal.
   <section id="correcao" style="margin-top:0;border-top:0;padding-top:0">
     <h2 style="color:var(--ink);margin-top:22px">Achou um erro?</h2>
     <p class="sub">Se algum dado estiver errado, avise. Toda mensagem é lida e, confirmada na fonte oficial, a correção entra na próxima atualização.</p>
     <form id="fCorr" class="corr">
       <label>Qual informação está errada? *<textarea name="entry.761032610" rows="3" required placeholder="Ex.: a presença do deputado X na sessão de 10/03/2026"></textarea></label>
-      <label>Qual é a informação certa e onde dá para conferir?<textarea name="entry.2012681224" rows="3" placeholder="Ex.: link da ata ou da página da Assembleia"></textarea></label>
+      <label>Qual é a informação certa e onde dá para conferir?<textarea name="entry.2012681224" rows="3" placeholder="Ex.: link da ata ou da página da Câmara Legislativa"></textarea></label>
       <div class="row">
         <label>Seu nome *<input type="text" name="entry.704650860" required autocomplete="name"></label>
         <label>E-mail para contato *<input type="email" name="entry.1976979237" required autocomplete="email"></label>
@@ -336,7 +336,7 @@ function itemDoc(d, comTag){
     '<div class="em">'+esc(d.e)+'</div>'+
     (d.em?d.em.map(function(e){return '<div class="em"><b>'+brl(e.v)+'</b> · '+esc(e.c)+(d.em.length>1&&e.ds?' — '+esc(e.ds):'')+'</div>';}).join(''):(d.g==='emenda'?'<div class="meta">Valor não localizado no documento oficial.</div>':''))+
     '<div class="meta">'+(d.a&&d.a.length?'Autor: '+esc(autores(d))+' · ':'')+(d.s?'Situação: '+esc(d.s)+' · ':'')+
-    '<a href="'+esc((D.u_base||'')+d.u)+'" target="_blank" rel="noopener">ver na Assembleia</a></div></li>';
+    '<a href="'+esc((D.u_base||'')+d.u)+'" target="_blank" rel="noopener">ver na Câmara Legislativa</a></div></li>';
 }
 // lista com "mostrar mais"
 function paginar(el, itens, render, passo){
@@ -393,7 +393,7 @@ var emEx = D.vereadores.filter(function(v){return v.status==='exercicio';});
 $('atualizado').textContent = 'Dados coletados em '+(D.coletado_em?dt(D.coletado_em.slice(0,10))+' às '+D.coletado_em.slice(11):'—');
 var sesC = D.sessoes.filter(function(s){return (s.tipo==='Ordinária'||s.tipo==='Extraordinária')&&s.chamada>0;}).length;
 var cont = {}; D.docs.forEach(function(d){ cont[d.g]=(cont[d.g]||0)+1; });
-var TEM_PRES = D.vereadores.some(function(v){return v.pres;});   // algumas casas não publicam presença (Cuiabá, Assembleia)
+var TEM_PRES = D.vereadores.some(function(v){return v.pres;});   // algumas casas não publicam presença (Cuiabá, Câmara Legislativa)
 $('nums').innerHTML = [
   [emEx.length,'deputados em exercício']].concat(TEM_PRES?[[sesC,'sessões com chamada registrada']]:[]).concat([
   [cont.pedido||0,'pedidos de melhoria'],[cont.lei||0,'propostas de lei'],[cont.homenagem||0,'homenagens']
@@ -481,10 +481,10 @@ buscar();
     var dts=ds.map(function(d){return d.d;}).sort();
     var vs={}; ds.forEach(function(d){ d.a.forEach(function(a){ vs[a]=1; }); }); var nv=Object.keys(vs).length;
     var per=mes(dts[0])===mes(dts[dts.length-1])?'em '+mes(dts[0]):'de '+mes(dts[0])+' a '+mes(dts[dts.length-1]);
-    var txt='A '+r.local+', em '+(D.cidade_nome||'Distrito Federal')+', já recebeu '+ds.length+' pedidos de "'+r.tema.toLowerCase()+'" na Assembleia, feitos por '+nv+' deputado'+(nv===1?'':'es')+' '+per+'. O problema foi resolvido? Veja os pedidos: '+location.origin+location.pathname+'#repetidos';
+    var txt='A '+r.local+', em '+(D.cidade_nome||'Distrito Federal')+', já recebeu '+ds.length+' pedidos de "'+r.tema.toLowerCase()+'" na Câmara Legislativa, feitos por '+nv+' deputado'+(nv===1?'':'es')+' '+per+'. O problema foi resolvido? Veja os pedidos: '+location.origin+location.pathname+'#repetidos';
     return '<details data-k="'+k+'"><summary><span class="rep-sum"><span>'+esc(r.local)+' · '+esc(r.tema)+'</span><small>'+nv+' deputado'+(nv===1?'':'es')+' pediram · '+per+'</small></span><span class="cnt"><b style="color:var(--ink);font-size:17px">'+ds.length+'</b> vezes</span></summary>'+
       '<div class="dentro"><div class="cobrar"><a href="https://wa.me/?text='+encodeURIComponent(txt)+'" target="_blank" rel="noopener">Cobrar no WhatsApp</a><button type="button" data-copiar="'+esc(txt)+'">Copiar texto</button></div>'+
-      '<p class="nota">Mande para o deputado do seu bairro, para o Governo do Estado (Ouvidoria) ou para os vizinhos. Os e-mails dos deputados estão nos crachás.</p>'+
+      '<p class="nota">Mande para o deputado do seu bairro, para o Governo do Distrito Federal (Ouvidoria) ou para os vizinhos. Os e-mails dos deputados estão nos crachás.</p>'+
       '<ul class="lista">'+ds.map(function(d){return itemDoc(d);}).join('')+'</ul></div></details>';
   }
   el.addEventListener('click',function(e){ var b=e.target.closest('[data-copiar]'); if(!b) return;
@@ -512,7 +512,7 @@ $('grupoVer').innerHTML = D.vereadores.filter(function(v){return total(v)>0;}).s
   var el=$('emBox'), ems=D.docs.filter(function(d){return d.g==='emenda';});
   var com=ems.filter(function(d){return d.em;});
   if(!ems.length){ el.innerHTML='<div class="vazio">Nenhuma emenda individual registrada.</div>'; return; }
-  if(!com.length){ el.innerHTML='<div class="vazio">'+ems.length+' emenda(s) registrada(s) no sistema da Assembleia. '+(D.sistema==='SAPL'?'Este site ainda não lê o valor de cada uma: abra a emenda no link para ver o documento.':'Os valores ainda estão sendo lidos dos documentos oficiais.')+'</div><ul class="lista">'+ems.map(function(d){return itemDoc(d);}).join('')+'</ul>'; return; }
+  if(!com.length){ el.innerHTML='<div class="vazio">'+ems.length+' emenda(s) registrada(s) no sistema da Câmara Legislativa. '+(D.sistema==='SAPL'?'Este site ainda não lê o valor de cada uma: abra a emenda no link para ver o documento.':'Os valores ainda estão sendo lidos dos documentos oficiais.')+'</div><ul class="lista">'+ems.map(function(d){return itemDoc(d);}).join('')+'</ul>'; return; }
   var cat={}, tot=0, porAno={}, linhasN=com.reduce(function(s,d){return s+d.em.length;},0);
   com.forEach(function(d){ d.em.forEach(function(e){ cat[e.c]=(cat[e.c]||0)+e.v; tot+=e.v; var a=d.d.slice(0,4); porAno[a]=(porAno[a]||0)+e.v; }); });
   var ks=Object.keys(cat).sort(function(a,b){return cat[b]-cat[a];}), mx=cat[ks[0]]||1;
@@ -532,7 +532,7 @@ $('grupoVer').innerHTML = D.vereadores.filter(function(v){return total(v)>0;}).s
     var r=linhas.filter(function(x){ return (!f||x.e.c===f)&&q.every(function(t){return x._n.indexOf(t)>=0;}); });
     var soma=r.reduce(function(s,x){return s+x.e.v;},0);
     $('emLista').innerHTML='<p class="nota">'+r.length+' emenda'+(r.length===1?'':'s')+', somando <b>'+brl(soma)+'</b>, da maior para a menor.</p><div id="emL2"></div>';
-    paginar($('emL2'), r, function(x){ return '<li><div class="meta">'+dt(x.d.d)+' · '+esc(x.d.n)+' · '+esc(x.e.c)+'</div><div class="em"><b>'+brl(x.e.v)+'</b> — '+esc(x.e.ds||x.d.e)+'</div><div class="meta">Autor: '+esc(autores(x.d))+(x.d.s?' · Situação na Assembleia: '+esc(x.d.s):'')+' · <a href="'+esc((D.u_base||'')+x.d.u)+'" target="_blank" rel="noopener">ver na Assembleia</a></div></li>'; }, 15); }
+    paginar($('emL2'), r, function(x){ return '<li><div class="meta">'+dt(x.d.d)+' · '+esc(x.d.n)+' · '+esc(x.e.c)+'</div><div class="em"><b>'+brl(x.e.v)+'</b> — '+esc(x.e.ds||x.d.e)+'</div><div class="meta">Autor: '+esc(autores(x.d))+(x.d.s?' · Situação na Câmara Legislativa: '+esc(x.d.s):'')+' · <a href="'+esc((D.u_base||'')+x.d.u)+'" target="_blank" rel="noopener">ver na Câmara Legislativa</a></div></li>'; }, 15); }
   var te; $('qe').addEventListener('input',function(){clearTimeout(te);te=setTimeout(lista,180);}); $('fe').addEventListener('change',lista); lista();
 })();
 
@@ -556,13 +556,13 @@ function itemDiaria(i){ return '<li><div class="meta">'+esc(i.d)+' a '+esc(i.r)+
     vs.slice().sort(function(a,b){return b.gastos.diarias_total-a.gastos.diarias_total;}).map(function(v){ var g=v.gastos;
       return '<tr data-p="'+esc(v.partido||'')+'"><td><button class="link" data-v="'+esc(v.slug)+'" style="text-align:left">'+esc(nomeDe(v.slug))+'</button></td><td>'+(g.subsidio?brl2(g.subsidio):'—')+'</td><td>'+(g.verba?brl2(g.verba)+' <span style="color:var(--mut)">('+g.verba_meses+' meses)</span>':'—')+'</td><td><b>'+brl2(g.diarias_total)+'</b></td><td>'+g.diarias.length+'</td></tr>'; }).join('')+'</table></div>';
   var rp=G.verba_repetidas||{};
-  Object.keys(rp).forEach(function(n){ h+='<div class="aviso">Atenção: nos documentos oficiais da verba indenizatória, o nome “'+esc(n)+'” aparece duas vezes no mesmo mês em '+rp[n]+' meses. O site contou só uma vez para ele. A linha repetida não foi atribuída a ninguém, e há deputado do período que não aparece nesses documentos. Parece erro de digitação da Assembleia.</div>'; });
+  Object.keys(rp).forEach(function(n){ h+='<div class="aviso">Atenção: nos documentos oficiais da verba indenizatória, o nome “'+esc(n)+'” aparece duas vezes no mesmo mês em '+rp[n]+' meses. O site contou só uma vez para ele. A linha repetida não foi atribuída a ninguém, e há deputado do período que não aparece nesses documentos. Parece erro de digitação da Câmara Legislativa.</div>'; });
   h+='<h4>Assessores de gabinete</h4><p>O Portal da Transparência lista <b>'+nAss+'</b> servidores comissionados lotados em “Gabinete de Deputado”, para '+nVer+' deputados. Dá, em média, <b>'+(nAss/nVer).toLocaleString('pt-BR',{maximumFractionDigits:1})+'</b> assessores e <b>'+brl(custoAss/nVer)+'</b> por mês em salário-base para cada gabinete.</p>'+
     '<div class="tw"><table><tr><th>Cargo</th><th>Quantos</th><th>Salário-base mensal</th></tr>'+q.gabinetes.map(function(x){return '<tr><td>'+esc(x.cargo)+'</td><td>'+x.qtd+'</td><td>'+brl2(x.salario)+'</td></tr>';}).join('')+'</table></div>'+
     '<div class="aviso">O portal não informa em qual gabinete cada assessor trabalha, só que está lotado em “Gabinete de Deputado”. Por isso o site mostra a média, e não o número de assessores de cada deputado. A média é uma conta nossa. Quadro lido em '+dt(q.data)+'.</div>';
   h+='<details id="detOut"><summary><span>Diárias de assessores e servidores</span><span class="cnt">'+brl(totOut)+'</span></summary><div class="dentro"><p class="nota">Servidores que não são deputados e receberam diária desde 2025. Assessores de gabinete costumam viajar acompanhando um deputado, mas o portal não liga um ao outro.</p><div class="tw"><table><tr><th>Nome</th><th>Cargo</th><th>Ano</th><th>Diárias</th><th>Total</th></tr>'+
     G.outros_diarias.map(function(o){return '<tr><td><a href="'+esc(o.u)+'" target="_blank" rel="noopener">'+esc(o.nome)+'</a></td><td>'+esc(o.cargo)+'</td><td>'+o.ano+'</td><td>'+o.n+'</td><td>'+brl2(o.total)+'</td></tr>';}).join('')+'</table></div></div></details>';
-  h+='<p class="nota">Fontes: <a href="'+esc(G.fonte_diarias)+'" target="_blank" rel="noopener">Diárias</a>, <a href="'+esc(G.fonte_verba)+'" target="_blank" rel="noopener">Verbas indenizatórias</a> e <a href="'+esc(q.fonte)+'" target="_blank" rel="noopener">Quadro de Servidores</a> do Portal da Transparência da Assembleia. Salário é o valor bruto do quadro, sem encargos, 13º ou férias.</p>';
+  h+='<p class="nota">Fontes: <a href="'+esc(G.fonte_diarias)+'" target="_blank" rel="noopener">Diárias</a>, <a href="'+esc(G.fonte_verba)+'" target="_blank" rel="noopener">Verbas indenizatórias</a> e <a href="'+esc(q.fonte)+'" target="_blank" rel="noopener">Quadro de Servidores</a> do Portal da Transparência da Câmara Legislativa. Salário é o valor bruto do quadro, sem encargos, 13º ou férias.</p>';
   el.innerHTML=h; enfeitar(el);
 })();
 
@@ -578,7 +578,7 @@ function itemDiaria(i){ return '<li><div class="meta">'+esc(i.d)+' a '+esc(i.r)+
   var h='<div class="tw"><table><tr><th>Deputado</th><th>Sessões na chamada</th><th>Faltas sem justificativa</th><th>Faltas justificadas</th>'+(temVoto?'<th>Votações</th><th>Não votou</th><th>Abstenções</th>':'')+'</tr>'+
     l.map(function(x){ return '<tr data-p="'+esc(x.v.partido||'')+'"><td><button class="link" data-v="'+esc(x.v.slug)+'" style="text-align:left">'+esc(nomeDe(x.v.slug))+'</button>'+(x.v.status!=='exercicio'?' <span style="color:var(--mut)">('+(x.v.status==='licenciado'?'licenciado':'atuou na legislatura')+')</span>':'')+'</td><td>'+x.ses+'</td><td'+(x.aus?' style="font-weight:700"':'')+'>'+x.aus+'</td><td>'+x.just+'</td>'+
       (temVoto?'<td>'+x.tv+'</td><td>'+x.nv+(x.tv?' <span style="color:var(--mut)">('+Math.round(100*x.nv/x.tv)+'%)</span>':'')+'</td><td>'+x.ab+'</td>':'')+'</tr>'; }).join('')+'</table></div>';
-  h+='<p class="nota">Falta é o que o sistema da Assembleia registra na chamada como “Ausente” ou “Ausência justificada”. “Não votou” junta os registros “Não votou” e “Não vota” e também quem estava ausente na hora da votação. Quem preside a sessão em regra não vota, só desempata: por isso quem foi presidente no período aparece com número alto, e isso não é omissão.'+(temVoto?'':'Os votos nominais ainda estão em coleta.')+'</p>';
+  h+='<p class="nota">Falta é o que o sistema da Câmara Legislativa registra na chamada como “Ausente” ou “Ausência justificada”. “Não votou” junta os registros “Não votou” e “Não vota” e também quem estava ausente na hora da votação. Quem preside a sessão em regra não vota, só desempata: por isso quem foi presidente no período aparece com número alto, e isso não é omissão.'+(temVoto?'':'Os votos nominais ainda estão em coleta.')+'</p>';
   el.innerHTML=h; enfeitar(el);
 })();
 
@@ -588,7 +588,7 @@ $('fPartido').innerHTML='<option value="">Todos os partidos</option>'+Object.key
 function faltas(v){ return v.pres? v.pres.sessoes-v.pres.presente : 0; }
 function presBloco(pr){
   if(!TEM_PRES) return '';   // a casa não publica presença em formato legível
-  if(!pr||!pr.sessoes) return '<div class="pres"><span>Presença: o sistema da Assembleia não tem chamada com o nome dele.</span></div>';
+  if(!pr||!pr.sessoes) return '<div class="pres"><span>Presença: o sistema da Câmara Legislativa não tem chamada com o nome dele.</span></div>';
   var p=Math.round(100*pr.presente/pr.sessoes), just=pr.faltas.filter(function(x){return norm(x.m).indexOf('justific')>=0;}).length, aus=pr.faltas.length-just;
   return '<div class="pres'+(p<85?' baixa':'')+'"><b>'+p+'%</b><span>de presença · '+pr.presente+' de '+pr.sessoes+' sessões<br>'+aus+' falta'+(aus===1?'':'s')+' sem justificativa · '+just+' justificada'+(just===1?'':'s')+'</span></div>';
 }
@@ -630,7 +630,7 @@ function abrir(slug){
   var meus=D.docs.filter(function(d){return d.a.indexOf(slug)>=0;});
   var pr=v.pres, h='<button class="fechar" onclick="document.getElementById(\'dlg\').close()">Fechar</button>'+
     '<h2 style="margin-top:0">'+esc(v.nome)+'</h2><p class="sub">'+esc(v.partido||'')+(v.cargo?' · '+esc(v.cargo):'')+(v.obs?' · '+esc(v.obs):'')+
-    ' · <a href="'+esc(v.url)+'" target="_blank" rel="noopener">ficha oficial na Assembleia</a>'+
+    ' · <a href="'+esc(v.url)+'" target="_blank" rel="noopener">ficha oficial na Câmara Legislativa</a>'+
     (v.email&&v.status==='exercicio'?' · e-mail (o publicado na ficha oficial): <a href="mailto:'+esc(v.email)+'">'+esc(v.email)+'</a>':'')+'</p>';
   if(v.tse) h+=urna(v).replace('class="urna"','class="urna" style="margin:-6px 0 12px"').replace('votos em 2024','votos na eleição de 2024 (resultado oficial do TSE)');
   if(TEM_PRES) h+='<h3>Presença</h3>';
@@ -638,8 +638,8 @@ function abrir(slug){
   else if(pr){
     h+=presBloco(pr)+'<p>Presente em <b>'+pr.presente+'</b> de <b>'+pr.sessoes+'</b> sessões ordinárias e extraordinárias em que o nome dele aparece na chamada.</p>';
     if(pr.faltas.length){ h+='<details><summary><span>Registros diferentes de “Presente”</span><span class="cnt">'+pr.faltas.length+'</span></summary><div class="dentro"><ul class="lista">'+
-      pr.faltas.map(function(f){return '<li><div class="meta">'+dt(f.d)+'</div><div class="em">'+esc(f.s)+' — <b>'+esc(f.m)+'</b></div><div class="meta"><a href="'+esc(f.u)+'" target="_blank" rel="noopener">ver a sessão na Assembleia</a></div></li>';}).join('')+'</ul></div></details>'; }
-  } else h+='<p class="vazio">O sistema da Assembleia não tem chamada registrada com o nome dele.</p>';
+      pr.faltas.map(function(f){return '<li><div class="meta">'+dt(f.d)+'</div><div class="em">'+esc(f.s)+' — <b>'+esc(f.m)+'</b></div><div class="meta"><a href="'+esc(f.u)+'" target="_blank" rel="noopener">ver a sessão na Câmara Legislativa</a></div></li>';}).join('')+'</ul></div></details>'; }
+  } else h+='<p class="vazio">O sistema da Câmara Legislativa não tem chamada registrada com o nome dele.</p>';
   h+='<h3>O que apresentou</h3>'+barra(v.cont||{});
   ORD.forEach(function(g){
     var l=meus.filter(function(d){return d.g===g;}); if(!l.length) return;
@@ -650,7 +650,7 @@ function abrir(slug){
   var em=v.emendas||{};
   h+='<h3>Emendas ao orçamento</h3>';
   if(em.n){ h+='<p><b>'+brl(em.total)+'</b> em <b>'+em.n+'</b> emenda'+(em.n===1?'':'s')+' individuais apresentadas, somando os valores dos documentos oficiais.</p>'+chipsObj(em.cat, brl)+
-    '<p class="nota">Valor e área vêm do PDF assinado de cada emenda. Abra “Emendas ao orçamento” acima para ver cada uma, com o destino e o valor. A Assembleia não informa quanto foi pago: a execução é do Governo do Estado.</p>'; }
+    '<p class="nota">Valor e área vêm do PDF assinado de cada emenda. Abra “Emendas ao orçamento” acima para ver cada uma, com o destino e o valor. A Câmara Legislativa não informa quanto foi pago: a execução é do Governo do Distrito Federal.</p>'; }
   else h+='<p class="vazio">'+((v.cont||{}).emenda?'Valores das emendas ainda em coleta.':'Nenhuma emenda individual registrada no período.')+'</p>';
   var gs=v.gastos;
   if(gs){
@@ -659,7 +659,7 @@ function abrir(slug){
       '<span>Verba indenizatória recebida desde 2025'+(gs.verba_meses?' ('+gs.verba_meses+' meses)':'')+'</span><span>'+brl2(gs.verba)+'</span>'+
       '<span>Diárias de viagem desde 2025</span><span>'+brl2(gs.diarias_total)+'</span></div>';
     if(gs.diarias.length) h+='<details id="detDi"><summary><span>Viagens com diária</span><span class="cnt">'+gs.diarias.length+'</span></summary><div class="dentro"><ul class="lista">'+gs.diarias.map(itemDiaria).join('')+'</ul></div></details>';
-    h+='<p class="nota">O portal da Assembleia não informa quais assessores trabalham no gabinete de cada deputado. Veja a média na seção “Quanto custa cada deputado”.</p>';
+    h+='<p class="nota">O portal da Câmara Legislativa não informa quais assessores trabalham no gabinete de cada deputado. Veja a média na seção “Quanto custa cada deputado”.</p>';
   }
   var vt=v.votos||{}, ks=Object.keys(vt);
   h+='<h3>Como votou</h3>'+(ks.length?'<div class="chips">'+ks.sort(function(a,b){return vt[b]-vt[a];}).map(function(k){return '<span class="chip">'+esc(k)+' <b>'+vt[k]+'</b></span>';}).join('')+'</div><p class="meta" style="font-size:13px;color:var(--mut)">Votações nominais de projetos, requerimentos, moções, vetos e pareceres. Indicações e atas não entram nesta conta.</p>'+
@@ -696,7 +696,7 @@ function itemVot(x, tudo, meu){
     '<div class="meta"><a href="'+esc(x.u)+'" target="_blank" rel="noopener">ver a sessão</a>'+(x.p?' · <a href="'+esc(x.p)+'" target="_blank" rel="noopener">ver o projeto</a>':'')+'</div></li>';
 }
 (function(){
-  if(!VT.length){ $('votosResumo').innerHTML='<div class="vazio">Os votos nominais ainda estão sendo coletados no sistema da Assembleia.</div>'; $('abas').hidden=true; $('aba-proj').hidden=true; return; }
+  if(!VT.length){ $('votosResumo').innerHTML='<div class="vazio">Os votos nominais ainda estão sendo coletados no sistema da Câmara Legislativa.</div>'; $('abas').hidden=true; $('aba-proj').hidden=true; return; }
   // dividida = entre quem votou (a favor, contra, abstenção) nem todos votaram igual; "não votou" não divide (o presidente em regra não vota)
   var div=VT.filter(function(x){ var s={}; Object.keys(x.v).forEach(function(k){ var t=tipoVoto(x.v[k]); if(t!=='N') s[t]=1;}); return Object.keys(s).length>1; });
   var contra=VT.filter(function(x){ return Object.keys(x.v).some(function(k){return tipoVoto(x.v[k])==='C';}); });
@@ -760,7 +760,7 @@ function itemVot(x, tudo, meu){
       h+='<details><summary><span>Deputado por deputado</span></summary><div class="dentro"><div class="tw"><table><tr><th>Deputado</th>'+cab+Object.keys(porV).sort(function(a,b){return nomeDe(a).localeCompare(nomeDe(b),'pt');}).map(function(s){return linhaV(nomeDe(s),porV[s]);}).join('')+'</table></div></div></details>';
       h+='<details id="detDele"><summary><span>Ver essas votações</span><span class="cnt">'+dele.length+'</span></summary><div class="dentro"></div></details>';
     }
-    h+='<div class="aviso">Leia com cuidado: na Assembleia de '+esc(D.cidade_nome||'Distrito Federal')+' a grande maioria das votações termina com todos a favor, então é normal que os percentuais fiquem perto de 100%. A diferença aparece em poucas votações, que estão na aba “Quando não votaram junto”.</div>';
+    h+='<div class="aviso">Leia com cuidado: na Câmara Legislativa de '+esc(D.cidade_nome||'Distrito Federal')+' a grande maioria das votações termina com todos a favor, então é normal que os percentuais fiquem perto de 100%. A diferença aparece em poucas votações, que estão na aba “Quando não votaram junto”.</div>';
     $('partBox').innerHTML=h;
     var dd=$('detDele'); if(dd) dd.addEventListener('toggle',function(){ var box=dd.querySelector('.dentro'); if(dd.open&&!box.firstChild) paginar(box, dele, function(x){return itemVot(x,false);}, 12); });
   }
@@ -795,17 +795,17 @@ function itemVot(x, tudo, meu){
     'projeto-de-decreto-legislativo':'Projetos de Decreto Legislativo','emenda-parlamentar':'Emendas Parlamentares','veto':'Vetos'};
   var SAPL=D.sistema==='SAPL';
   var sit=D.situacoes_presenca||{};
-  var h='<p>Tudo neste site foi coletado automaticamente do site oficial da <a href="'+esc(D.fonte)+'" target="_blank" rel="noopener">Assembleia Legislativa de Distrito Federal</a>. Nada é digitado à mão. Cada proposta, sessão e deputado tem um link para a página oficial, para você conferir.</p>'+
+  var h='<p>Tudo neste site foi coletado automaticamente do site oficial da <a href="'+esc(D.fonte)+'" target="_blank" rel="noopener">Câmara Legislativa do Distrito Federal</a>. Nada é digitado à mão. Cada proposta, sessão e deputado tem um link para a página oficial, para você conferir.</p>'+
   (!TEM_PRES&&D.pres_descartada?'<details><summary><span>Presença</span></summary><div class="dentro"><p>O sistema oficial tem lista de presença, mas ela parece incompleta: '+esc(D.pres_descartada)+'. Para não apontar falta que não existiu, o site não mostra presença nem faltas desta casa.</p></div></details>':'')+
   (!TEM_PRES&&!D.pres_descartada?'<details><summary><span>Presença e votos</span></summary><div class="dentro"><p>Esta casa não publica a lista de presença das sessões nem o voto de cada um em formato que dê para coletar automaticamente (só em PDF escaneado ou sem arquivo). Por isso o site não mostra faltas nem votos aqui. Quando passar a publicar, entra na atualização seguinte.</p></div></details>':'')+
-  '<details'+(TEM_PRES?'':' hidden')+'><summary><span>Presença</span></summary><div class="dentro"><p>Contamos só as sessões ordinárias e extraordinárias já realizadas, de janeiro de 2025 em diante, em que a Assembleia publicou a chamada. Sessões solenes não entram.</p>'+
-    (SAPL?'<p>O sistema da Assembleia (SAPL) registra a lista de quem estava <b>presente</b> em cada sessão. Quem tinha mandato na data da sessão e não está na lista conta como falta. Se a Assembleia registrou justificativa de ausência para aquela sessão, conta como falta justificada. '+(D.sessoes_sem_chamada?D.sessoes_sem_chamada+' sessão(ões) sem nenhuma presença registrada ficaram de fora.':'')+'</p>'+
+  '<details'+(TEM_PRES?'':' hidden')+'><summary><span>Presença</span></summary><div class="dentro"><p>Contamos só as sessões ordinárias e extraordinárias já realizadas, de janeiro de 2025 em diante, em que a Câmara Legislativa publicou a chamada. Sessões solenes não entram.</p>'+
+    (SAPL?'<p>O sistema da Câmara Legislativa (SAPL) registra a lista de quem estava <b>presente</b> em cada sessão. Quem tinha mandato na data da sessão e não está na lista conta como falta. Se a Câmara Legislativa registrou justificativa de ausência para aquela sessão, conta como falta justificada. '+(D.sessoes_sem_chamada?D.sessoes_sem_chamada+' sessão(ões) sem nenhuma presença registrada ficaram de fora.':'')+'</p>'+
       '<p>O sistema não registra licenças. Para não contar licença como falta, o site usa duas regras iguais para todos: (1) só conta o período entre a primeira e a última presença registrada de cada deputado, o que cobre o suplente que atuou só por um tempo; (2) <b>5 ou mais faltas seguidas sem justificativa</b> são tratadas como licença ou afastamento e não entram na conta.'+
       ((D.afastamentos||[]).length?' Casos tratados assim: '+D.afastamentos.map(function(a){return esc(nomeDe(a.slug)===a.slug?a.nome:nomeDe(a.slug))+' ('+a.sessoes+' sessões, de '+dt(a.de)+' a '+dt(a.ate)+')';}).join('; ')+'.':'')+'</p>'
       :'<p>Se o nome do deputado não aparece na chamada de uma sessão, essa sessão não conta para ele: <b>dado ausente não é falta</b>. '+(D.sessoes_sem_chamada?D.sessoes_sem_chamada+' sessão(ões) não tinham chamada publicada e ficaram de fora.':'')+'</p>')+
     '<p>Situações que o sistema registrou: '+Object.keys(sit).map(function(k){return esc(k)+' ('+sit[k]+')';}).join(', ')+'.</p></div></details>'+
   '<details><summary><span>Como separamos homenagem de trabalho</span></summary><div class="dentro"><p>A regra olha o tipo do documento e palavras do texto oficial, igual para todos os deputados:</p><ul>'+
-    '<li><b>Pedidos de melhoria:</b> todas as Indicações (pedidos ao Governo do Estado).</li>'+
+    '<li><b>Pedidos de melhoria:</b> todas as Indicações (pedidos ao Governo do Distrito Federal).</li>'+
     '<li><b>Perguntas e cobranças:</b> todos os Requerimentos.</li>'+
     '<li><b>Homenagens:</b> Moções de aplauso, congratulação, pesar ou reconhecimento; Decretos Legislativos de título, honraria, comenda ou medalha; e projetos que dão nome a rua ou prédio ou criam dia, semana ou data comemorativa.</li>'+
     '<li><b>Propostas de lei:</b> os demais Projetos de Lei, de Lei Complementar, de Resolução, de Decreto Legislativo e Emendas à Lei Orgânica.</li>'+
@@ -815,13 +815,13 @@ function itemVot(x, tudo, meu){
     '<p>Quando uma proposta tem mais de um autor, ela conta para cada um deles.</p></div></details>'+
   '<details><summary><span>Pedidos por bairro e pedidos que voltam</span></summary><div class="dentro"><p>A busca procura o que você digitou no texto oficial de cada Indicação. Em “Pedidos que voltam”, o site junta Indicações do mesmo assunto que citam a mesma rua, avenida, travessa ou estrada. O assunto e o nome da via são reconhecidos por palavras do texto, então é uma estimativa. Um pedido não é prova de obra feita ou não feita.</p></div></details>'+
   '<details><summary><span>Setor das propostas de lei</span></summary><div class="dentro"><p>Cada proposta de lei recebe um setor (saúde, educação, segurança e outros) conforme palavras do texto oficial, com a mesma lista de palavras para todos. É uma estimativa automática: uma proposta que fala de dois assuntos fica só no primeiro que a regra reconhece.</p></div></details>'+
-  '<details><summary><span>Emendas ao orçamento</span></summary><div class="dentro"><p>O valor e a área de cada emenda são lidos do PDF assinado que a Assembleia publica (campos “Categoria” e “Valor da emenda”). O total de cada deputado é a soma desses valores, uma conta nossa. O site mostra o que foi <b>indicado</b>, não o que foi pago: a execução é feita pelo Governo do Estado e não aparece no sistema da Assembleia. Emendas de bancada ainda não entram.</p></div></details>'+
-  '<details><summary><span>Votos</span></summary><div class="dentro"><p>'+(SAPL?'Os votos vêm do registro de votação nominal de cada matéria no sistema da Assembleia (SAPL): Sim, Não, Abstenção ou Não votou. Só entram as votações em que a Assembleia registrou o voto de cada deputado; votações simbólicas não têm esse registro. Indicações e atas ficaram de fora.':'Os votos vêm do botão “como votou cada deputado” de cada matéria, na página da sessão. Coletamos projetos, requerimentos, moções, vetos e pareceres. Indicações e atas ficaram de fora nesta versão.')+'</p></div></details>'+
-  (!D.gastos?'':'<details><summary><span>Salário pago desde a posse (contador do topo)</span></summary><div class="dentro"><p>É uma estimativa: o salário bruto mensal de cada cargo, conforme o Quadro de Servidores do Portal da Transparência da Assembleia, multiplicado pelo tempo desde 1º de janeiro de 2025, em tempo real. Usa o valor atual do quadro para todo o período e não inclui 13º, férias, encargos, verba indenizatória nem diárias (essas estão na seção “Quanto custa cada deputado”).</p></div></details>')+
+  '<details><summary><span>Emendas ao orçamento</span></summary><div class="dentro"><p>O valor e a área de cada emenda são lidos do PDF assinado que a Câmara Legislativa publica (campos “Categoria” e “Valor da emenda”). O total de cada deputado é a soma desses valores, uma conta nossa. O site mostra o que foi <b>indicado</b>, não o que foi pago: a execução é feita pelo Governo do Distrito Federal e não aparece no sistema da Câmara Legislativa. Emendas de bancada ainda não entram.</p></div></details>'+
+  '<details><summary><span>Votos</span></summary><div class="dentro"><p>'+(SAPL?'Os votos vêm do registro de votação nominal de cada matéria no sistema da Câmara Legislativa (SAPL): Sim, Não, Abstenção ou Não votou. Só entram as votações em que a Câmara Legislativa registrou o voto de cada deputado; votações simbólicas não têm esse registro. Indicações e atas ficaram de fora.':'Os votos vêm do botão “como votou cada deputado” de cada matéria, na página da sessão. Coletamos projetos, requerimentos, moções, vetos e pareceres. Indicações e atas ficaram de fora nesta versão.')+'</p></div></details>'+
+  (!D.gastos?'':'<details><summary><span>Salário pago desde a posse (contador do topo)</span></summary><div class="dentro"><p>É uma estimativa: o salário bruto mensal de cada cargo, conforme o Quadro de Servidores do Portal da Transparência da Câmara Legislativa, multiplicado pelo tempo desde 1º de janeiro de 2025, em tempo real. Usa o valor atual do quadro para todo o período e não inclui 13º, férias, encargos, verba indenizatória nem diárias (essas estão na seção “Quanto custa cada deputado”).</p></div></details>')+
   '<details><summary><span>Votos na eleição de 2024</span></summary><div class="dentro"><p>Resultado oficial do TSE para deputado em Distrito Federal (1º turno de 2024), ligado a cada deputado pelo nome de urna. “Suplente que assumiu” é quem não foi eleito direto e entrou no lugar de um titular. '+(D.tse?'<a href="'+esc(D.tse.fonte)+'" target="_blank" rel="noopener">Ver no site de resultados do TSE</a>.':'')+'</p></div></details>'+
-  '<details><summary><span>Conferência: o site da Assembleia × o que coletamos</span></summary><div class="dentro"><div class="tw"><table><tr><th>Tipo</th><th>Ano</th><th>Câmara informa</th><th>Coletado</th></tr>'+
+  '<details><summary><span>Conferência: o site da Câmara Legislativa × o que coletamos</span></summary><div class="dentro"><div class="tw"><table><tr><th>Tipo</th><th>Ano</th><th>Câmara informa</th><th>Coletado</th></tr>'+
     D.conferencia.map(function(c){return '<tr><td>'+esc(rot[c.sub]||c.sub)+'</td><td>'+c.ano+'</td><td>'+c.site+'</td><td'+(c.site!==c.coletado?' style="color:var(--bad);font-weight:700"':'')+'>'+c.coletado+'</td></tr>';}).join('')+'</table></div></div></details>'+
-  '<details><summary><span>O que este site não mostra</span></summary><div class="dentro"><ul><li>Se o Governo do Estado atendeu ou não cada pedido: o sistema da Assembleia não informa.</li><li>Quais assessores trabalham para cada deputado: o portal da Assembleia não informa.</li><li>Quanto das emendas o Governo do Estado de fato pagou.</li><li>Trabalho em comissões, audiências públicas e atendimento no gabinete.</li><li>Qualidade das propostas. Número alto não quer dizer trabalho melhor.</li></ul></div></details>';
+  '<details><summary><span>O que este site não mostra</span></summary><div class="dentro"><ul><li>Se o Governo do Distrito Federal atendeu ou não cada pedido: o sistema da Câmara Legislativa não informa.</li><li>Quais assessores trabalham para cada deputado: o portal da Câmara Legislativa não informa.</li><li>Quanto das emendas o Governo do Distrito Federal de fato pagou.</li><li>Trabalho em comissões, audiências públicas e atendimento no gabinete.</li><li>Qualidade das propostas. Número alto não quer dizer trabalho melhor.</li></ul></div></details>';
   $('transp').innerHTML=h;
 })();
 })();
@@ -845,14 +845,14 @@ var dlg=$('dlg'), dlgIn=$('dlgIn');
 function abrir(h){ dlgIn.innerHTML='<button class="fechar" onclick="document.getElementById(\'dlg\').close()">Fechar</button>'+h; dlg.showModal(); dlg.scrollTop=0; }
 
 // numeros do topo
-var por={'Câmara':{n:0,h:0},'Governo do Estado':{n:0,h:0}};
+var por={'Câmara':{n:0,h:0},'Governo do Distrito Federal':{n:0,h:0}};
 L.compras.forEach(function(c){ var o=por[c.o]; if(o){ o.n++; o.h+=c.h||0; } });
 $('licNums').innerHTML=[
-  [por['Câmara'].n,'compras da Assembleia'],[brl(por['Câmara'].h),'homologado pela Câmara'],
-  [por['Governo do Estado'].n,'compras do Governo do Estado'],[brl(por['Governo do Estado'].h),'homologado pelo Governo do Estado'],
+  [por['Câmara'].n,'compras da Câmara Legislativa'],[brl(por['Câmara'].h),'homologado pela Câmara'],
+  [por['Governo do Distrito Federal'].n,'compras do Governo do Distrito Federal'],[brl(por['Governo do Distrito Federal'].h),'homologado pelo Governo do Distrito Federal'],
   [L.comparados.length,'itens com preço comparado']
 ].map(function(x){return '<div class="num"><b>'+x[0]+'</b><small>'+x[1]+'</small></div>';}).join('');
-$('licNums').insertAdjacentHTML('afterend','<p class="nota" style="margin-top:10px">Desde '+dt(L.desde)+'. <b>Homologado não é o mesmo que pago</b>: em registro de preço, o valor é um teto, e o Governo do Estado compra só o que precisar ao longo do ano. Licitações ainda sem resultado publicado ficam sem valor homologado.</p>');
+$('licNums').insertAdjacentHTML('afterend','<p class="nota" style="margin-top:10px">Desde '+dt(L.desde)+'. <b>Homologado não é o mesmo que pago</b>: em registro de preço, o valor é um teto, e o Governo do Distrito Federal compra só o que precisar ao longo do ano. Licitações ainda sem resultado publicado ficam sem valor homologado.</p>');
 
 // abas
 $('licAbas').querySelectorAll('button').forEach(function(b){ b.onclick=function(){
@@ -866,18 +866,18 @@ $('licAbas').querySelectorAll('button').forEach(function(b){ b.onclick=function(
   var h='<div class="aviso">Comparação automática, por semelhança do texto do item: <b>não é prova de preço errado</b>. Marca, qualidade, quantidade, prazo e frete mudam o preço. '+
     'O preço de alimentos também muda com a época do ano. Use como ponto de partida e confira as compras nos links oficiais.</div>'+
     '<p class="nota">Base: '+qt(L.base_itens)+' itens de material dos pregões de '+qt(L.base_municipios)+' cidades de MT publicados desde '+dt(L.base_desde)+'. '+
-    'Só aparece o item de Distrito Federal com preço parecido encontrado em pelo menos 3 outras cidades. '+acima+' item(ns) saíram 30% ou mais acima da mediana; '+abaixo+' saíram 10% ou mais abaixo.</p>';
+    'Só aparece o item do Distrito Federal com preço parecido encontrado em pelo menos 3 outras cidades. '+acima+' item(ns) saíram 30% ou mais acima da mediana; '+abaixo+' saíram 10% ou mais abaixo.</p>';
   if(!C.length){ $('lic-cmp').innerHTML=h+'<div class="vazio">Nenhum item com comparação suficiente ainda.</div>'; return; }
-  h+='<div class="tw"><table data-filtro="Câmara e Governo do Estado"><tr><th>Item</th><th>Quem comprou</th><th>Distrito Federal pagou (unid.)</th><th>Mediana MT</th><th>Diferença</th><th>Cidades</th><th></th></tr>'+
+  h+='<div class="tw"><table data-filtro="Câmara e Governo do Distrito Federal"><tr><th>Item</th><th>Quem comprou</th><th>Distrito Federal pagou (unid.)</th><th>Mediana MT</th><th>Diferença</th><th>Cidades</th><th></th></tr>'+
     C.map(function(x,i){ return '<tr data-p="'+esc(x.o)+'"><td>'+esc(x.ds)+' <span class="nota">('+esc(x.un)+')</span></td><td>'+esc(x.o)+'</td><td>'+unit(x.p)+'</td><td>'+unit(x.md)+'</td><td>'+dif(x.df)+'</td><td>'+x.n+'</td>'+
       '<td><button class="link" data-i="'+L.comparados.indexOf(x)+'">ver</button></td></tr>'; }).join('')+'</table></div>';
   $('lic-cmp').innerHTML=h;
   window.enfeitar && window.enfeitar($('lic-cmp'));
   $('lic-cmp').addEventListener('click',function(e){
     var b=e.target.closest('button[data-i]'); if(!b) return; var x=L.comparados[+b.dataset.i];
-    abrir('<h2 style="margin-top:0">'+esc(x.ds)+'</h2><p class="sub">'+esc(x.o)+' de Distrito Federal · '+qt(x.q)+' '+esc(x.un)+' · fornecedor: '+esc(x.fo)+'</p>'+
+    abrir('<h2 style="margin-top:0">'+esc(x.ds)+'</h2><p class="sub">'+esc(x.o)+' do Distrito Federal · '+qt(x.q)+' '+esc(x.un)+' · fornecedor: '+esc(x.fo)+'</p>'+
       '<div class="nums" style="margin:0 0 14px"><div class="num"><b>'+unit(x.p)+'</b><small>Distrito Federal pagou</small></div><div class="num"><b>'+unit(x.md)+'</b><small>mediana de '+x.n+' cidades</small></div><div class="num"><b>'+dif(x.df)+'</b><small>diferença</small></div></div>'+
-      '<p><a href="'+esc(x.u)+'" target="_blank" rel="noopener">Ver a compra de Distrito Federal no PNCP</a></p>'+
+      '<p><a href="'+esc(x.u)+'" target="_blank" rel="noopener">Ver a compra do Distrito Federal no PNCP</a></p>'+
       '<h4>Itens parecidos em outras cidades</h4><div class="tw"><table><tr><th>Cidade</th><th>Preço unitário</th><th>Publicado</th><th></th></tr>'+
       x.ou.slice().sort(function(a,b){return a[1]-b[1];}).map(function(o){return '<tr><td>'+esc(o[0])+'</td><td>'+unit(o[1])+'</td><td>'+dt(o[2])+'</td><td><a href="'+esc(o[3])+'" target="_blank" rel="noopener">PNCP</a></td></tr>';}).join('')+
       '</table></div><p class="nota">Itens casados pelas palavras da descrição, mesma unidade e mesmas medidas (tamanho, peso, volume). Abra cada compra para conferir se é mesmo o mesmo produto.</p>');
@@ -928,7 +928,7 @@ $('licLista').addEventListener('click',function(e){
   L.compras.forEach(function(c){ c.f.forEach(function(f){ var k=f[0]+'|'+c.o; var x=F[k]||(F[k]={n:f[0],o:c.o,t:0,c:0}); x.t+=f[1]||0; x.c++; }); });
   var L2=Object.keys(F).map(function(k){return F[k];}).filter(function(x){return x.t>0;}).sort(function(a,b){return b.t-a.t;}).slice(0,150);
   $('lic-forn').innerHTML='<p class="nota">Soma do valor homologado por empresa, desde '+dt(L.desde)+'. Valor homologado é o que foi fechado na licitação; o pagamento pode ser menor.</p>'+
-    '<div class="tw"><table data-filtro="Câmara e Governo do Estado"><tr><th>Empresa</th><th>Comprou</th><th>Total homologado</th><th>Compras</th></tr>'+
+    '<div class="tw"><table data-filtro="Câmara e Governo do Distrito Federal"><tr><th>Empresa</th><th>Comprou</th><th>Total homologado</th><th>Compras</th></tr>'+
     L2.map(function(x){return '<tr data-p="'+esc(x.o)+'"><td>'+esc(x.n)+'</td><td>'+esc(x.o)+'</td><td>'+brl(x.t)+'</td><td>'+x.c+'</td></tr>';}).join('')+'</table></div>';
   window.enfeitar && window.enfeitar($('lic-forn'));
 })();
