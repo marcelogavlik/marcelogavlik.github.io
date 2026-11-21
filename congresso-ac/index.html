@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar da Câmara · Bancada de AC no Congresso</title>
+<meta name="description" content="Votos, presença nas votações, propostas e gastos da cota parlamentar dos deputados federais e senadores de Acre, só com dados oficiais.">
+<style>
+:root{--bg:#fff;--soft:#f5f7f6;--line:#e3e8e5;--ink:#17211c;--mut:#5d6b64;--ac:#0b6b4f;--ac2:#e6f3ee;--warn:#9a5b00;--warnbg:#fff6e5;--bad:#b3261e;--sim:#0b6b4f;--nao:#b3261e;--out:#8a948f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+a{color:var(--ac)}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header.top{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fffffff2;backdrop-filter:blur(6px);z-index:5}
+header.top .wrap{display:flex;align-items:center;gap:14px;padding-top:10px;padding-bottom:10px}
+.logo{font-weight:800;font-size:18px;white-space:nowrap}.logo span{color:var(--ac)}
+nav{display:flex;gap:14px;overflow-x:auto;font-size:14px;scrollbar-width:none;min-width:0;flex:1}
+nav a{color:var(--mut);text-decoration:none;white-space:nowrap}
+.hero{padding:34px 0 10px}
+.hero h1{font-size:clamp(26px,5vw,38px);line-height:1.15;margin:0 0 10px;letter-spacing:-.02em}
+.hero p{color:var(--mut);margin:0 0 6px;max-width:680px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--ac2);color:var(--ac)}
+section{padding:30px 0;border-top:1px solid var(--line);margin-top:24px;scroll-margin-top:56px}
+h2{font-size:23px;margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 16px;max-width:720px}
+.aviso{background:var(--warnbg);color:var(--warn);border-radius:10px;padding:10px 14px;font-size:14px;margin:12px 0}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0 0}
+.num{background:var(--soft);border-radius:12px;padding:14px;min-width:0}
+.num b{display:block;font-size:clamp(17px,2.6vw,24px);overflow-wrap:anywhere}.num small{color:var(--mut)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.cab{display:flex;gap:12px;align-items:center}
+.cab img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--soft);flex:none}
+.card h3{margin:0;font-size:18px}.card .pt{font-size:13px;color:var(--mut)}
+.pres{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;background:var(--soft);border-radius:12px;padding:10px 12px}
+.pres b{font-size:28px;line-height:1}.pres span{font-size:13px;color:var(--mut)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:14px}
+.kv span:nth-child(even){font-weight:700;text-align:right}
+.card button{font:inherit;margin-top:auto;border:0;background:var(--ac);color:#fff;border-radius:10px;padding:10px;cursor:pointer;font-weight:600}
+input[type=search],select{font:inherit;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);width:100%}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.row>*{flex:1 1 200px}
+.lista{list-style:none;margin:0;padding:0}.lista li{border-bottom:1px solid var(--line);padding:11px 0}
+.meta{font-size:13px;color:var(--mut)}
+button.mais{font:inherit;border:1px solid var(--line);background:#fff;color:var(--ac);border-radius:10px;padding:9px 14px;cursor:pointer;margin-top:12px}
+.voto{display:inline-block;font-size:12.5px;border-radius:6px;padding:1px 7px;margin:2px 4px 2px 0;background:var(--soft)}
+.voto.sim{background:#e6f3ee;color:var(--sim)}.voto.nao{background:#fbe9e7;color:var(--nao)}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-weight:600;font-size:12.5px}.tw{overflow-x:auto}
+.mini{height:10px;border-radius:99px;background:var(--soft);overflow:hidden;min-width:60px}.mini i{display:block;height:100%;background:var(--ac)}
+.linha{display:grid;grid-template-columns:minmax(120px,240px) 1fr 110px;gap:10px;align-items:center;padding:5px 0;font-size:14px}
+.linha .n{text-align:right;white-space:nowrap}
+details{border:1px solid var(--line);border-radius:12px;margin:8px 0}
+details>summary{cursor:pointer;padding:12px 14px;font-weight:600}
+details>.dentro{padding:0 14px 12px}
+dialog{border:0;border-radius:16px;padding:0;width:min(780px,96vw);max-height:92vh;color:var(--ink)}
+dialog::backdrop{background:#0008}.dlg{padding:20px}
+.fechar{float:right;font:inherit;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;cursor:pointer}
+h4{margin:22px 0 6px;font-size:16px}
+.abas{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.abas button{font:inherit;border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 14px;cursor:pointer}
+.abas button.on{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:24px 0 50px;color:var(--mut);font-size:14px}
+.vazio{color:var(--mut);padding:14px 0}
+@media (max-width:560px){ nav{display:none} .linha{grid-template-columns:110px 1fr 90px} }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="logo"><a href="/" style="color:inherit;text-decoration:none">Radar da Câmara</a> <span>· Congresso</span></div>
+  <nav><a href="#bancada">Bancada</a><a href="#cota">Cota parlamentar</a><a href="#votos">Votos</a><a href="#fontes">De onde vêm os dados</a></nav>
+</div></header>
+<main class="wrap">
+  <div class="hero">
+    <span class="pill" id="atualizado">carregando…</span>
+    <h1>O que a bancada de Acre faz no Congresso</h1>
+    <p>Os 8 deputados federais e os 3 senadores eleitos por Acre: participação nas votações nominais, como votaram, o que propuseram e quanto gastaram da cota parlamentar desde janeiro de 2025.</p>
+    <p>Tudo das bases de dados abertos da Câmara dos Deputados e do Senado Federal, com link para conferir. Não dá nota nem opinião: só mostra o dado.</p>
+    <div class="nums" id="nums"></div>
+  </div>
+  <section id="bancada">
+    <h2>A bancada</h2>
+    <p class="sub">Toque em um parlamentar para ver os gastos nota por nota, as propostas e os votos.</p>
+    <div class="abas" id="abaCasa"><button data-c="" class="on">Todos</button><button data-c="Câmara">Deputados federais</button><button data-c="Senado">Senadores</button></div>
+    <div class="cards" id="cards"></div>
+  </section>
+  <section id="cota">
+    <h2>Cota parlamentar: no que a bancada gastou</h2>
+    <p class="sub">A cota (CEAP na Câmara, CEAPS no Senado) reembolsa passagens, combustível, aluguel de escritório, divulgação do mandato e outras despesas. Valores reembolsados desde janeiro de 2025.</p>
+    <div id="cotaBox"></div>
+  </section>
+  <section id="votos">
+    <h2>Votos: como a bancada votou</h2>
+    <p class="sub">Votações nominais no plenário, em que cada parlamentar registra o voto. Procure um tema ou veja só as votações em que a bancada de AC se dividiu.</p>
+    <div class="abas" id="abaVot"><button data-c="Câmara" class="on">Câmara</button><button data-c="Senado">Senado</button></div>
+    <div class="row"><input type="search" id="qv" placeholder="Ex.: reforma, PEC, agro, imposto, MP…" autocomplete="off">
+      <select id="fv"><option value="">Todas as votações</option><option value="div">Só quando a bancada de AC se dividiu</option></select></div>
+    <div id="votLista"></div>
+  </section>
+  <section id="fontes">
+    <h2>De onde vêm os dados</h2>
+    <div id="transp"></div>
+  </section>
+</main>
+<footer><div class="wrap">Radar da Câmara · projeto independente de transparência · dados abertos da Câmara dos Deputados e do Senado Federal.</div></footer>
+<dialog id="dlg"><div class="dlg" id="dlgIn"></div></dialog>
+<script src="dados.js"></script>
+<script>
+(function(){
+var D=window.CONG; if(!D){ document.getElementById('atualizado').textContent='Dados ainda não gerados'; return; }
+var $=function(id){return document.getElementById(id);};
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function norm(s){ return (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); }
+function dt(s){ if(!s) return ''; var p=s.slice(0,10).split('-'); return p[2]+'/'+p[1]+'/'+p[0]; }
+function brl(n){ return (n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}); }
+function brl2(n){ return (n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); }
+function paginar(el, itens, render, passo){
+  passo=passo||25; var n=0; if(!itens.length){ el.innerHTML='<div class="vazio">Nada encontrado.</div>'; return; }
+  el.innerHTML='<ul class="lista"></ul>'; var ul=el.firstChild, b=document.createElement('button'); b.className='mais';
+  function mais(){ ul.insertAdjacentHTML('beforeend', itens.slice(n,n+passo).map(render).join('')); n+=passo; if(n>=itens.length) b.remove(); else b.textContent='Mostrar mais ('+(itens.length-n)+' restantes)'; }
+  el.appendChild(b); b.onclick=mais; mais();
+}
+var P=D.deputados.concat(D.senadores); var PI={}; P.forEach(function(p){ p.key=(p.casa==='Senado'?'s':'d')+p.id; PI[p.key]=p; });
+P.forEach(function(p){
+  p.cota=p.despesas.reduce(function(s,x){return s+x.v;},0);
+  var vs=p.casa==='Senado'?D.votacoes_senado:D.votacoes_camara, k=String(p.id), part=0, tot=0;
+  // só contam as votações em que o parlamentar estava em exercício (licença para ser ministro/secretário não é falta)
+  function emExercicio(v){
+    if(p.casa==='Senado') return k in v.v;   // o Senado lista todos os senadores em exercício em cada votação
+    return (p.exercicio||[]).some(function(e){ return v.d>=e[0] && (!e[1]||v.d<=e[1]); });
+  }
+  vs.forEach(function(v){ if(!emExercicio(v)) return; tot++; var x=v.v[k]; if(x&&!/^(-|ausente|n[aã]o votou|ncom|ap|lp|mis|ls|lap|lc|lg)$/i.test(x)) part++; });
+  p.part=part; p.tot=tot;
+  p.ptipos={}; p.props.forEach(function(x){ p.ptipos[x.t]=(p.ptipos[x.t]||0)+1; });
+});
+$('atualizado').textContent='Dados coletados em '+dt(D.coletado_em)+' às '+D.coletado_em.slice(11);
+var cotaTot=P.reduce(function(s,p){return s+p.cota;},0);
+$('nums').innerHTML=[[brl(cotaTot),'de cota parlamentar reembolsada à bancada desde 2025'],[D.votacoes_camara.length.toLocaleString('pt-BR'),'votações nominais na Câmara'],[D.votacoes_senado.length.toLocaleString('pt-BR'),'votações nominais no Senado'],[P.reduce(function(s,p){return s+p.props.length;},0).toLocaleString('pt-BR'),'propostas e requerimentos apresentados']]
+  .map(function(x){return '<div class="num"><b>'+x[0]+'</b><small>'+x[1]+'</small></div>';}).join('');
+
+// ---------- cards
+var casaSel='';
+function cards(){
+  var l=P.filter(function(p){return !casaSel||p.casa===casaSel;});
+  $('cards').innerHTML=l.map(function(p){
+    var pc=p.tot?Math.round(100*p.part/p.tot):0;
+    var tops=Object.keys(p.ptipos).sort(function(a,b){return p.ptipos[b]-p.ptipos[a];}).slice(0,3);
+    return '<div class="card"><div class="cab"><img src="'+esc(p.foto)+'" alt="" loading="lazy"><div><h3>'+esc(p.nome)+'</h3><div class="pt">'+esc(p.partido)+' · '+(p.casa==='Senado'?'senador(a)':'deputado(a) federal')+'</div></div></div>'+
+      '<div class="pres"><b>'+pc+'%</b><span>das votações nominais<br>votou em '+p.part+' de '+p.tot+'</span></div>'+
+      '<div class="kv"><span>Cota parlamentar desde 2025</span><span>'+brl(p.cota)+'</span>'+
+      '<span>Propostas e requerimentos</span><span>'+p.props.length+'</span>'+
+      (tops.length?'<span style="grid-column:1/-1;color:var(--mut);font-size:13px;font-weight:400;text-align:left">'+tops.map(function(t){return esc(t)+' '+p.ptipos[t];}).join(' · ')+'</span>':'')+'</div>'+
+      '<button data-p="'+p.key+'">Ver tudo</button></div>';
+  }).join('');
+}
+$('abaCasa').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; casaSel=b.dataset.c; Array.prototype.forEach.call(this.children,function(x){x.classList.toggle('on',x===b);}); cards(); });
+cards();
+
+// ---------- cota da bancada
+(function(){
+  var cat={}; P.forEach(function(p){ p.despesas.forEach(function(x){ cat[x.t]=(cat[x.t]||0)+x.v; }); });
+  var ks=Object.keys(cat).sort(function(a,b){return cat[b]-cat[a];}), mx=cat[ks[0]]||1;
+  var ord=P.slice().sort(function(a,b){return b.cota-a.cota;}), mp=ord[0]?ord[0].cota:1;
+  $('cotaBox').innerHTML='<h4>Por parlamentar</h4>'+ord.map(function(p){return '<div class="linha"><span>'+esc(p.nome)+' <span class="meta">('+esc(p.partido)+')</span></span><div class="mini"><i style="width:'+(100*p.cota/mp)+'%"></i></div><span class="n"><b>'+brl(p.cota)+'</b></span></div>';}).join('')+
+    '<h4>Por tipo de despesa</h4>'+ks.map(function(k){return '<div class="linha"><span>'+esc(k)+'</span><div class="mini"><i style="width:'+(100*cat[k]/mx)+'%"></i></div><span class="n">'+brl(cat[k])+'</span></div>';}).join('')+
+    '<div class="aviso">Gasto da cota não é irregularidade: ela existe para pagar despesas do mandato. Senadores e deputados têm limites diferentes, que variam pelo estado. Abra a ficha de cada um para ver nota por nota.</div>';
+})();
+
+// ---------- votacoes
+var casaVot='Câmara';
+function classe(v){ var n=norm(v); return /^(sim)/.test(n)?'sim':(/^(nao)/.test(n)?'nao':''); }
+function votacoes(){
+  var vs=casaVot==='Senado'?D.votacoes_senado:D.votacoes_camara, mem=P.filter(function(p){return p.casa===casaVot;});
+  var q=norm($('qv').value.trim()).split(/\s+/).filter(Boolean), f=$('fv').value;
+  var r=vs.filter(function(v){
+    if(q.length&&!q.every(function(t){return norm(v.e).indexOf(t)>=0;})) return false;
+    if(f==='div'){ var s={}; Object.keys(v.v).forEach(function(k){ var c=classe(v.v[k]); if(c) s[c]=1; }); return s.sim&&s.nao; }
+    return true;
+  }).slice().reverse();
+  $('votLista').innerHTML='<p class="meta">'+r.length+' votação(ões), da mais recente para a mais antiga.</p><div id="vl2"></div>';
+  paginar($('vl2'), r, function(v){
+    var pl=Object.keys(v.placar||{}).map(function(k){return esc(k)+' '+v.placar[k];}).join(' · ');
+    return '<li><div class="meta">'+dt(v.d)+(v.res?' · '+esc(v.res):'')+(v.ap===1?' · aprovada':(v.ap===0?' · rejeitada':''))+'</div><div>'+esc(v.e)+'</div>'+
+      '<div style="margin-top:4px">'+mem.map(function(p){ var x=v.v[String(p.id)]; return '<span class="voto '+classe(x||'')+'">'+esc(p.nome)+': <b>'+esc(x||'não votou')+'</b></span>'; }).join('')+'</div>'+
+      '<div class="meta">Placar geral: '+pl+(v.u?' · <a href="'+esc(v.u)+'" target="_blank" rel="noopener">ver na fonte</a>':'')+'</div></li>';
+  }, 20);
+}
+$('abaVot').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; casaVot=b.dataset.c; Array.prototype.forEach.call(this.children,function(x){x.classList.toggle('on',x===b);}); votacoes(); });
+var tv; $('qv').addEventListener('input',function(){clearTimeout(tv);tv=setTimeout(votacoes,180);}); $('fv').addEventListener('change',votacoes);
+votacoes();
+
+// ---------- ficha
+function abrir(key){
+  var p=PI[key]; if(!p) return;
+  var cat={}, forn={}; p.despesas.forEach(function(x){ cat[x.t]=(cat[x.t]||0)+x.v; var f=x.f||'(sem fornecedor)'; forn[f]=(forn[f]||0)+x.v; });
+  var ks=Object.keys(cat).sort(function(a,b){return cat[b]-cat[a];}), mx=cat[ks[0]]||1;
+  var fs=Object.keys(forn).sort(function(a,b){return forn[b]-forn[a];}).slice(0,10);
+  var h='<button class="fechar" onclick="document.getElementById(\'dlg\').close()">Fechar</button><h2 style="margin-top:0">'+esc(p.nome)+'</h2>'+
+    '<p class="sub">'+esc(p.partido)+' · '+(p.casa==='Senado'?'Senado Federal':'Câmara dos Deputados')+(p.nome_civil?' · '+esc(p.nome_civil):'')+' · <a href="'+esc(p.url)+'" target="_blank" rel="noopener">página oficial</a>'+(p.email?' · <a href="mailto:'+esc(p.email)+'">'+esc(p.email)+'</a>':'')+'</p>';
+  h+='<h4>Votações nominais</h4><p>Votou em <b>'+p.part+'</b> de <b>'+p.tot+'</b> votações nominais do plenário desde 2025. Falta em votação pode ter justificativa (missão oficial, licença) que o dado de voto não mostra.</p>';
+  h+='<h4>Cota parlamentar: '+brl2(p.cota)+'</h4>'+ks.map(function(k){return '<div class="linha"><span>'+esc(k)+'</span><div class="mini"><i style="width:'+(100*cat[k]/mx)+'%"></i></div><span class="n">'+brl(cat[k])+'</span></div>';}).join('');
+  h+='<h4>Fornecedores que mais receberam</h4><div class="tw"><table><tr><th>Fornecedor</th><th>Total</th></tr>'+fs.map(function(f){return '<tr><td>'+esc(f)+'</td><td>'+brl2(forn[f])+'</td></tr>';}).join('')+'</table></div>';
+  h+='<h4>Nota por nota</h4><input type="search" id="qd" placeholder="Procure fornecedor ou tipo de despesa"><div id="dl"></div>';
+  h+='<h4>Propostas e requerimentos ('+p.props.length+')</h4><input type="search" id="qp" placeholder="Procure um tema"><div id="pl"></div>';
+  $('dlgIn').innerHTML=h;
+  var ds=p.despesas.slice().sort(function(a,b){return b.d<a.d?-1:1;});
+  function ld(){ var q=norm($('qd').value); paginar($('dl'), ds.filter(function(x){return !q||norm(x.f+' '+x.t).indexOf(q)>=0;}), function(x){ return '<li><div class="meta">'+dt(x.d)+' · '+esc(x.t)+'</div><div><b>'+brl2(x.v)+'</b> — '+esc(x.f)+(x.u?' · <a href="'+esc(x.u)+'" target="_blank" rel="noopener">nota</a>':'')+'</div></li>'; }, 20); }
+  var pr=p.props.slice().reverse();
+  function lp(){ var q=norm($('qp').value); paginar($('pl'), pr.filter(function(x){return !q||norm(x.e+' '+x.t).indexOf(q)>=0;}), function(x){ return '<li><div class="meta">'+esc(x.id||(x.t+' '+x.n+'/'+x.a))+(x.d?' · '+dt(x.d):'')+(x.sit?' · '+esc(x.sit):'')+'</div><div>'+esc(x.e)+'</div>'+(x.u?'<div class="meta"><a href="'+esc(x.u)+'" target="_blank" rel="noopener">ver na fonte</a></div>':'')+'</li>'; }, 15); }
+  $('qd').addEventListener('input',ld); $('qp').addEventListener('input',lp); ld(); lp();
+  $('dlg').showModal(); $('dlg').scrollTop=0;
+}
+document.addEventListener('click',function(e){ var b=e.target.closest('[data-p]'); if(b) abrir(b.dataset.p); });
+$('dlg').addEventListener('click',function(e){ if(e.target===this) this.close(); });
+
+$('transp').innerHTML='<p>Tudo neste site vem das bases de dados abertos oficiais. Nada é digitado à mão.</p>'+
+  '<details><summary>Câmara dos Deputados</summary><div class="dentro"><p>API de dados abertos (dadosabertos.camara.leg.br): lista dos deputados de AC, despesas da Cota para o Exercício da Atividade Parlamentar (CEAP) com link para a nota, proposições de autoria de cada um e votações do plenário com o voto de cada deputado.</p></div></details>'+
+  '<details><summary>Senado Federal</summary><div class="dentro"><p>Dados abertos do Senado (legis.senado.leg.br/dadosabertos): senadores de AC, processos de autoria e votações do plenário. Gastos da Cota para o Exercício da Atividade Parlamentar dos Senadores (CEAPS) vêm da planilha anual publicada pelo Senado.</p></div></details>'+
+  '<details><summary>Participação nas votações</summary><div class="dentro"><p>Conta só as votações nominais do plenário (as simbólicas não registram voto individual). “Votou” inclui Sim, Não, Abstenção e Obstrução. Só contam as votações do período em que o parlamentar estava em exercício: licença para ser ministro ou secretário de Estado não conta como falta (na Câmara, pelo histórico oficial do deputado; no Senado, pela lista de senadores em exercício em cada votação). Ausência pode ter justificativa, como missão oficial ou licença, que o dado de voto não mostra.</p></div></details>'+
+  '<details><summary>O que este site não mostra</summary><div class="dentro"><ul><li>Trabalho em comissões, relatorias e emendas ao orçamento da União (vêm em versão futura).</li><li>Qualidade das propostas: número alto não quer dizer trabalho melhor.</li><li>Gasto de cota não é irregularidade.</li></ul></div></details>';
+})();
+</script>
+</body>
+</html>
