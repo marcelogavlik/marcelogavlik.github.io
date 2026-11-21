@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Radar da Câmara · Assembleia de RS — o que cada deputado faz, com dados oficiais</title>
-<meta name="description" content="Presença, propostas, homenagens, pedidos por bairro e votos dos deputados estaduais de Rio Grande do Sul, só com dados oficiais da Assembleia.">
+<meta name="description" content="Presença, propostas, homenagens, pedidos por bairro e votos dos deputados estaduais do Rio Grande do Sul, só com dados oficiais da Assembleia.">
 <style>
 :root{
   --bg:#fff; --soft:#f5f7f6; --line:#e3e8e5; --ink:#17211c; --mut:#5d6b64;
@@ -157,7 +157,7 @@ h4{margin:22px 0 4px;font-size:16px}
 <main class="wrap">
   <div class="hero">
     <span class="pill" id="atualizado">carregando…</span>
-    <h1>O que cada deputado estadual de Rio Grande do Sul fez desde que tomou posse</h1>
+    <h1>O que cada deputado estadual do Rio Grande do Sul fez desde que tomou posse</h1>
     <p>Presença nas sessões, propostas, homenagens, pedidos de melhoria e votos. Tudo tirado do sistema da própria Assembleia Legislativa, com link para conferir.</p>
     <p>Site independente, feito por morador. Sem ligação com a Assembleia, o Governo do Estado ou partido. Não dá nota nem opinião: só mostra o dado.</p>
     <div class="contador" id="contador" hidden></div>
@@ -253,7 +253,7 @@ h4{margin:22px 0 4px;font-size:16px}
 
   <section id="licitacoes">
     <h2>Licitações: o que a Assembleia e o Governo do Estado compraram</h2>
-    <p class="sub">Compras publicadas no Portal Nacional de Contratações Públicas (PNCP): o que foi comprado, de quem e por quanto. Nos materiais, o preço que Rio Grande do Sul pagou aparece ao lado do que outras cidades de Rio Grande do Sul pagaram por item parecido.</p>
+    <p class="sub">Compras publicadas no Portal Nacional de Contratações Públicas (PNCP): o que foi comprado, de quem e por quanto. Nos materiais, o preço que Rio Grande do Sul pagou aparece ao lado do que outras cidades do Rio Grande do Sul pagaram por item parecido.</p>
     <div class="nums" id="licNums"></div>
     <div class="abas" id="licAbas">
       <button data-aba="cmp" class="on">Preço comparado</button>
@@ -278,7 +278,7 @@ h4{margin:22px 0 4px;font-size:16px}
 </main>
 
 <footer><div class="wrap">
-  Radar da Câmara · Assembleia de RS · projeto independente de transparência · dados públicos da Assembleia Legislativa de Rio Grande do Sul.
+  Radar da Câmara · Assembleia de RS · projeto independente de transparência · dados públicos da Assembleia Legislativa do Rio Grande do Sul.
   <section id="correcao" style="margin-top:0;border-top:0;padding-top:0">
     <h2 style="color:var(--ink);margin-top:22px">Achou um erro?</h2>
     <p class="sub">Se algum dado estiver errado, avise. Toda mensagem é lida e, confirmada na fonte oficial, a correção entra na próxima atualização.</p>
@@ -795,7 +795,7 @@ function itemVot(x, tudo, meu){
     'projeto-de-decreto-legislativo':'Projetos de Decreto Legislativo','emenda-parlamentar':'Emendas Parlamentares','veto':'Vetos'};
   var SAPL=D.sistema==='SAPL';
   var sit=D.situacoes_presenca||{};
-  var h='<p>Tudo neste site foi coletado automaticamente do site oficial da <a href="'+esc(D.fonte)+'" target="_blank" rel="noopener">Assembleia Legislativa de Rio Grande do Sul</a>. Nada é digitado à mão. Cada proposta, sessão e deputado tem um link para a página oficial, para você conferir.</p>'+
+  var h='<p>Tudo neste site foi coletado automaticamente do site oficial da <a href="'+esc(D.fonte)+'" target="_blank" rel="noopener">Assembleia Legislativa do Rio Grande do Sul</a>. Nada é digitado à mão. Cada proposta, sessão e deputado tem um link para a página oficial, para você conferir.</p>'+
   (!TEM_PRES&&D.pres_descartada?'<details><summary><span>Presença</span></summary><div class="dentro"><p>O sistema oficial tem lista de presença, mas ela parece incompleta: '+esc(D.pres_descartada)+'. Para não apontar falta que não existiu, o site não mostra presença nem faltas desta casa.</p></div></details>':'')+
   (!TEM_PRES&&!D.pres_descartada?'<details><summary><span>Presença e votos</span></summary><div class="dentro"><p>Esta casa não publica a lista de presença das sessões nem o voto de cada um em formato que dê para coletar automaticamente (só em PDF escaneado ou sem arquivo). Por isso o site não mostra faltas nem votos aqui. Quando passar a publicar, entra na atualização seguinte.</p></div></details>':'')+
   '<details'+(TEM_PRES?'':' hidden')+'><summary><span>Presença</span></summary><div class="dentro"><p>Contamos só as sessões ordinárias e extraordinárias já realizadas, de janeiro de 2025 em diante, em que a Assembleia publicou a chamada. Sessões solenes não entram.</p>'+
@@ -866,7 +866,7 @@ $('licAbas').querySelectorAll('button').forEach(function(b){ b.onclick=function(
   var h='<div class="aviso">Comparação automática, por semelhança do texto do item: <b>não é prova de preço errado</b>. Marca, qualidade, quantidade, prazo e frete mudam o preço. '+
     'O preço de alimentos também muda com a época do ano. Use como ponto de partida e confira as compras nos links oficiais.</div>'+
     '<p class="nota">Base: '+qt(L.base_itens)+' itens de material dos pregões de '+qt(L.base_municipios)+' cidades de MT publicados desde '+dt(L.base_desde)+'. '+
-    'Só aparece o item de Rio Grande do Sul com preço parecido encontrado em pelo menos 3 outras cidades. '+acima+' item(ns) saíram 30% ou mais acima da mediana; '+abaixo+' saíram 10% ou mais abaixo.</p>';
+    'Só aparece o item do Rio Grande do Sul com preço parecido encontrado em pelo menos 3 outras cidades. '+acima+' item(ns) saíram 30% ou mais acima da mediana; '+abaixo+' saíram 10% ou mais abaixo.</p>';
   if(!C.length){ $('lic-cmp').innerHTML=h+'<div class="vazio">Nenhum item com comparação suficiente ainda.</div>'; return; }
   h+='<div class="tw"><table data-filtro="Câmara e Governo do Estado"><tr><th>Item</th><th>Quem comprou</th><th>Rio Grande do Sul pagou (unid.)</th><th>Mediana MT</th><th>Diferença</th><th>Cidades</th><th></th></tr>'+
     C.map(function(x,i){ return '<tr data-p="'+esc(x.o)+'"><td>'+esc(x.ds)+' <span class="nota">('+esc(x.un)+')</span></td><td>'+esc(x.o)+'</td><td>'+unit(x.p)+'</td><td>'+unit(x.md)+'</td><td>'+dif(x.df)+'</td><td>'+x.n+'</td>'+
@@ -875,9 +875,9 @@ $('licAbas').querySelectorAll('button').forEach(function(b){ b.onclick=function(
   window.enfeitar && window.enfeitar($('lic-cmp'));
   $('lic-cmp').addEventListener('click',function(e){
     var b=e.target.closest('button[data-i]'); if(!b) return; var x=L.comparados[+b.dataset.i];
-    abrir('<h2 style="margin-top:0">'+esc(x.ds)+'</h2><p class="sub">'+esc(x.o)+' de Rio Grande do Sul · '+qt(x.q)+' '+esc(x.un)+' · fornecedor: '+esc(x.fo)+'</p>'+
+    abrir('<h2 style="margin-top:0">'+esc(x.ds)+'</h2><p class="sub">'+esc(x.o)+' do Rio Grande do Sul · '+qt(x.q)+' '+esc(x.un)+' · fornecedor: '+esc(x.fo)+'</p>'+
       '<div class="nums" style="margin:0 0 14px"><div class="num"><b>'+unit(x.p)+'</b><small>Rio Grande do Sul pagou</small></div><div class="num"><b>'+unit(x.md)+'</b><small>mediana de '+x.n+' cidades</small></div><div class="num"><b>'+dif(x.df)+'</b><small>diferença</small></div></div>'+
-      '<p><a href="'+esc(x.u)+'" target="_blank" rel="noopener">Ver a compra de Rio Grande do Sul no PNCP</a></p>'+
+      '<p><a href="'+esc(x.u)+'" target="_blank" rel="noopener">Ver a compra do Rio Grande do Sul no PNCP</a></p>'+
       '<h4>Itens parecidos em outras cidades</h4><div class="tw"><table><tr><th>Cidade</th><th>Preço unitário</th><th>Publicado</th><th></th></tr>'+
       x.ou.slice().sort(function(a,b){return a[1]-b[1];}).map(function(o){return '<tr><td>'+esc(o[0])+'</td><td>'+unit(o[1])+'</td><td>'+dt(o[2])+'</td><td><a href="'+esc(o[3])+'" target="_blank" rel="noopener">PNCP</a></td></tr>';}).join('')+
       '</table></div><p class="nota">Itens casados pelas palavras da descrição, mesma unidade e mesmas medidas (tamanho, peso, volume). Abra cada compra para conferir se é mesmo o mesmo produto.</p>');
