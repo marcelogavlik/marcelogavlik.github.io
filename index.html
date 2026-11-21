@@ -24,6 +24,7 @@ a.cid b{display:block;font-size:18px}
 a.cid small{color:var(--mut)}
 .breve{border:1px dashed var(--line);border-radius:14px;padding:16px;color:var(--mut)}
 .estados{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+h3.uf{grid-column:1/-1;margin:14px 0 0;font-size:15px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
 .estados a.cid{padding:12px 14px}.estados a.cid b{font-size:16px}
 footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
 </style>
@@ -33,9 +34,10 @@ footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
 <main class="wrap">
   <h1>O que cada vereador faz, com dados oficiais.</h1>
   <p class="lead">Presença nas sessões, propostas, votos, pedidos para os bairros e licitações da câmara da sua cidade, organizados a partir dos sistemas públicos e com link para a fonte.</p>
-  <h2>Câmaras municipais (19)</h2>
+  <h2>Câmaras municipais (39)</h2>
   <input type="search" id="q" placeholder="Procure sua cidade" autocomplete="off">
   <div class="cidades" id="lista">
+    <h3 class="uf">Mato Grosso</h3>
     <a class="cid" href="/alta-floresta/"><b>Alta Floresta</b><small>Mato Grosso</small></a>
     <a class="cid" href="/barra-do-garcas/"><b>Barra do Garças</b><small>Mato Grosso</small></a>
     <a class="cid" href="/campo-novo-do-parecis/"><b>Campo Novo do Parecis</b><small>Mato Grosso</small></a>
@@ -55,6 +57,38 @@ footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
     <a class="cid" href="/tangara-da-serra/"><b>Tangará da Serra</b><small>Mato Grosso</small></a>
     <a class="cid" href="/varzea-grande/"><b>Várzea Grande</b><small>Mato Grosso</small></a>
     <a class="cid" href="/agua-boa/"><b>Água Boa</b><small>Mato Grosso</small></a>
+    <h3 class="uf">Bahia</h3>
+    <a class="cid" href="/ba/ilheus/"><b>Ilhéus</b><small>Bahia</small></a>
+    <a class="cid" href="/ba/jequie/"><b>Jequié</b><small>Bahia</small></a>
+    <a class="cid" href="/ba/juazeiro/"><b>Juazeiro</b><small>Bahia</small></a>
+    <a class="cid" href="/ba/vitoria-da-conquista/"><b>Vitória da Conquista</b><small>Bahia</small></a>
+    <h3 class="uf">Ceará</h3>
+    <a class="cid" href="/ce/fortaleza/"><b>Fortaleza</b><small>Ceará</small></a>
+    <h3 class="uf">Espírito Santo</h3>
+    <a class="cid" href="/es/serra/"><b>Serra</b><small>Espírito Santo</small></a>
+    <h3 class="uf">Minas Gerais</h3>
+    <a class="cid" href="/mg/contagem/"><b>Contagem</b><small>Minas Gerais</small></a>
+    <a class="cid" href="/mg/montes-claros/"><b>Montes Claros</b><small>Minas Gerais</small></a>
+    <a class="cid" href="/mg/varginha/"><b>Varginha</b><small>Minas Gerais</small></a>
+    <h3 class="uf">Paraná</h3>
+    <a class="cid" href="/pr/toledo/"><b>Toledo</b><small>Paraná</small></a>
+    <h3 class="uf">Pará</h3>
+    <a class="cid" href="/pa/parauapebas/"><b>Parauapebas</b><small>Pará</small></a>
+    <h3 class="uf">Pernambuco</h3>
+    <a class="cid" href="/pe/cabo-de-santo-agostinho/"><b>Cabo de Santo Agostinho</b><small>Pernambuco</small></a>
+    <a class="cid" href="/pe/olinda/"><b>Olinda</b><small>Pernambuco</small></a>
+    <h3 class="uf">Rio Grande do Norte</h3>
+    <a class="cid" href="/rn/natal/"><b>Natal</b><small>Rio Grande do Norte</small></a>
+    <a class="cid" href="/rn/parnamirim/"><b>Parnamirim</b><small>Rio Grande do Norte</small></a>
+    <h3 class="uf">Rio de Janeiro</h3>
+    <a class="cid" href="/rj/sao-joao-de-meriti/"><b>São João de Meriti</b><small>Rio de Janeiro</small></a>
+    <h3 class="uf">Rondônia</h3>
+    <a class="cid" href="/ro/porto-velho/"><b>Porto Velho</b><small>Rondônia</small></a>
+    <h3 class="uf">Roraima</h3>
+    <a class="cid" href="/rr/boa-vista/"><b>Boa Vista</b><small>Roraima</small></a>
+    <h3 class="uf">São Paulo</h3>
+    <a class="cid" href="/sp/sorocaba/"><b>Sorocaba</b><small>São Paulo</small></a>
+    <a class="cid" href="/sp/sao-vicente/"><b>São Vicente</b><small>São Paulo</small></a>
     <div class="breve">Outras cidades de MT em breve.</div>
   </div>
   <h2>Congresso: a bancada de cada estado</h2>
@@ -92,9 +126,17 @@ footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
   <div class="cidades">
     <a class="cid" href="/assembleia-ac/"><b>Assembleia Legislativa de Acre</b><small>Acre</small></a>
     <a class="cid" href="/assembleia-al/"><b>Assembleia Legislativa de Alagoas</b><small>Alagoas</small></a>
+    <a class="cid" href="/assembleia-am/"><b>Assembleia Legislativa de Amazonas</b><small>Amazonas</small></a>
+    <a class="cid" href="/assembleia-es/"><b>Assembleia Legislativa do Espírito Santo</b><small>Espírito Santo</small></a>
     <a class="cid" href="/almt/"><b>Assembleia Legislativa de Mato Grosso</b><small>Mato Grosso</small></a>
+    <a class="cid" href="/assembleia-mg/"><b>Assembleia Legislativa de Minas Gerais</b><small>Minas Gerais</small></a>
+    <a class="cid" href="/assembleia-pr/"><b>Assembleia Legislativa do Paraná</b><small>Paraná</small></a>
+    <a class="cid" href="/assembleia-pb/"><b>Assembleia Legislativa de Paraíba</b><small>Paraíba</small></a>
+    <a class="cid" href="/assembleia-pe/"><b>Assembleia Legislativa de Pernambuco</b><small>Pernambuco</small></a>
     <a class="cid" href="/assembleia-pi/"><b>Assembleia Legislativa de Piauí</b><small>Piauí</small></a>
+    <a class="cid" href="/assembleia-ro/"><b>Assembleia Legislativa de Rondônia</b><small>Rondônia</small></a>
     <a class="cid" href="/assembleia-rr/"><b>Assembleia Legislativa de Roraima</b><small>Roraima</small></a>
+    <a class="cid" href="/assembleia-se/"><b>Assembleia Legislativa de Sergipe</b><small>Sergipe</small></a>
 
     <div class="breve">Outras assembleias em breve.</div>
   </div>
@@ -104,6 +146,7 @@ footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
 document.getElementById('q').addEventListener('input',function(){
   var q=this.value.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
   document.querySelectorAll('#lista a.cid').forEach(function(a){ a.hidden = q && a.textContent.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().indexOf(q)<0; });
+  document.querySelectorAll('#lista h3.uf').forEach(function(h){ h.hidden = !!q; });
 });
 </script>
 </body>
