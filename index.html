@@ -23,6 +23,8 @@ a.cid:hover{border-color:var(--ac)}
 a.cid b{display:block;font-size:18px}
 a.cid small{color:var(--mut)}
 .breve{border:1px dashed var(--line);border-radius:14px;padding:16px;color:var(--mut)}
+.estados{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.estados a.cid{padding:12px 14px}.estados a.cid b{font-size:16px}
 footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
 </style>
 </head>
@@ -31,7 +33,7 @@ footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
 <main class="wrap">
   <h1>O que cada vereador faz, com dados oficiais.</h1>
   <p class="lead">Presença nas sessões, propostas, votos, pedidos para os bairros e licitações da câmara da sua cidade, organizados a partir dos sistemas públicos e com link para a fonte.</p>
-  <h2>Câmaras de Mato Grosso (19)</h2>
+  <h2>Câmaras municipais (19)</h2>
   <input type="search" id="q" placeholder="Procure sua cidade" autocomplete="off">
   <div class="cidades" id="lista">
     <a class="cid" href="/alta-floresta/"><b>Alta Floresta</b><small>Mato Grosso</small></a>
@@ -55,11 +57,17 @@ footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
     <a class="cid" href="/agua-boa/"><b>Água Boa</b><small>Mato Grosso</small></a>
     <div class="breve">Outras cidades de MT em breve.</div>
   </div>
-  <h2>Assembleia e Congresso</h2>
+  <h2>Congresso: a bancada de cada estado</h2>
+  <p class="lead" style="margin-bottom:12px">Deputados federais e senadores: votos, presença nas votações, propostas e cota parlamentar.</p>
+  <div class="cidades estados">
+    <a class="cid" href="/congresso-go/"><b>Goiás</b><small>Bancada de GO</small></a>
+    <a class="cid" href="/congresso-mt/"><b>Mato Grosso</b><small>Bancada de MT</small></a>
+  </div>
+  <h2>Assembleias Legislativas</h2>
   <div class="cidades">
-    <a class="cid" href="/almt/"><b>Assembleia Legislativa de MT</b><small>Deputados estaduais</small></a>
-    <a class="cid" href="/congresso-mt/"><b>Bancada de MT no Congresso</b><small>8 deputados federais e 3 senadores</small></a>
-    <div class="breve">Mais casas legislativas em breve.</div>
+    <a class="cid" href="/almt/"><b>Assembleia Legislativa de Mato Grosso</b><small>Mato Grosso</small></a>
+
+    <div class="breve">Outras assembleias em breve.</div>
   </div>
   <footer>Radar da Câmara · projeto independente de transparência · só dados públicos.</footer>
 </main>
