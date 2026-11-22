@@ -4,293 +4,158 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Radar da Câmara — o que cada vereador faz, com dados oficiais</title>
-<meta name="description" content="Presença, propostas, votos e licitações das câmaras municipais de Mato Grosso, só com dados oficiais.">
+<meta name="description" content="Presença, propostas, votos e licitações de câmaras municipais, Assembleias Legislativas e bancadas no Congresso, só com dados oficiais.">
 <style>
 :root{--bg:#fff;--soft:#f5f7f6;--line:#e3e8e5;--ink:#17211c;--mut:#5d6b64;--ac:#0b6b4f;--ac2:#e6f3ee}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
 header{border-bottom:1px solid var(--line)}
 header .wrap{padding:12px 16px;font-weight:800;font-size:18px}
 header span{color:var(--ac)}
-h1{font-size:clamp(28px,5.5vw,42px);line-height:1.12;letter-spacing:-.02em;margin:40px 0 12px}
-h2{font-size:20px;margin:34px 0 12px}
-p.lead{color:var(--mut);max-width:620px;margin:0 0 20px}
-input{font:inherit;padding:11px 13px;border:1px solid var(--line);border-radius:10px;width:100%;max-width:420px;margin:0 0 16px}
-.cidades{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-a.cid{display:block;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);text-decoration:none}
-a.cid:hover{border-color:var(--ac)}
-a.cid b{display:block;font-size:18px}
-a.cid small{color:var(--mut)}
-.breve{border:1px dashed var(--line);border-radius:14px;padding:16px;color:var(--mut)}
-.estados{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
-h3.uf{grid-column:1/-1;margin:14px 0 0;font-size:15px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
-.estados a.cid{padding:12px 14px}.estados a.cid b{font-size:16px}
-footer{color:var(--mut);font-size:14px;margin:48px 0 28px}
+h1{font-size:clamp(24px,4.5vw,34px);line-height:1.15;letter-spacing:-.02em;margin:24px 0 6px}
+p.lead{color:var(--mut);max-width:680px;margin:0 0 6px;font-size:15px}
+p.tot{color:var(--mut);font-size:14px;margin:0 0 14px}
+p.tot b{color:var(--ink)}
+/* barra fixa: busca, tipo e estados */
+.barra{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid var(--line)}
+.linha1{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input{font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:10px;flex:1 1 220px;min-width:0}
+input:focus{outline:2px solid var(--ac);border-color:var(--ac)}
+.tipos{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;flex:0 0 auto}
+.tipos button{font:inherit;font-size:14px;border:0;background:var(--bg);color:var(--mut);padding:8px 11px;cursor:pointer}
+.tipos button+button{border-left:1px solid var(--line)}
+.tipos button.on{background:var(--ac);color:#fff}
+.ufs{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.ufs button{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer;min-width:38px}
+.ufs button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.ufs button:hover{border-color:var(--ac)}
+/* estados */
+section.est{padding:14px 0 6px;border-bottom:1px solid var(--line);scroll-margin-top:130px}
+section.est h2{font-size:18px;margin:0 0 8px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+section.est h2 small{font-size:13px;font-weight:400;color:var(--mut)}
+.casas{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.casas a{font-size:14px;text-decoration:none;color:var(--ac);background:var(--ac2);border-radius:999px;padding:4px 12px;font-weight:600}
+.casas a:hover{background:var(--ac);color:#fff}
+ul.cids{list-style:none;margin:0;padding:0;columns:4 170px;column-gap:18px}
+ul.cids li{break-inside:avoid;padding:2px 0}
+ul.cids a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+ul.cids a:hover{color:var(--ac);border-bottom-color:var(--ac)}
+.vazio{color:var(--mut);padding:24px 0;display:none}
+[hidden]{display:none!important}
+footer{color:var(--mut);font-size:14px;margin:32px 0 28px}
+@media (max-width:600px){
+  .ufs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+  .ufs button{flex:0 0 auto}
+  .tipos{width:100%}.tipos button{flex:1;padding:8px 4px}
+  ul.cids{columns:2}
+  section.est{scroll-margin-top:170px}
+}
 </style>
 </head>
 <body>
 <header><div class="wrap">Radar <span>da Câmara</span></div></header>
 <main class="wrap">
-  <h1>O que cada vereador faz, com dados oficiais.</h1>
-  <p class="lead">Presença nas sessões, propostas, votos, pedidos para os bairros e licitações da câmara da sua cidade, organizados a partir dos sistemas públicos e com link para a fonte.</p>
-  <h2>Câmaras municipais (163)</h2>
-  <input type="search" id="q" placeholder="Procure sua cidade" autocomplete="off">
-  <div class="cidades" id="lista">
-    <h3 class="uf">Mato Grosso</h3>
-    <a class="cid" href="/alta-floresta/"><b>Alta Floresta</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/barra-do-garcas/"><b>Barra do Garças</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/campo-novo-do-parecis/"><b>Campo Novo do Parecis</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/campo-verde/"><b>Campo Verde</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/confresa/"><b>Confresa</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/cuiaba/"><b>Cuiabá</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/caceres/"><b>Cáceres</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/juara/"><b>Juara</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/juina/"><b>Juína</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/lucas-do-rio-verde/"><b>Lucas do Rio Verde</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/nova-mutum/"><b>Nova Mutum</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/peixoto-de-azevedo/"><b>Peixoto de Azevedo</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/pontes-e-lacerda/"><b>Pontes e Lacerda</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/primavera-do-leste/"><b>Primavera do Leste</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/querencia/"><b>Querência</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/rondonopolis/"><b>Rondonópolis</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/sapezal/"><b>Sapezal</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/sinop/"><b>Sinop</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/sorriso/"><b>Sorriso</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/tangara-da-serra/"><b>Tangará da Serra</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/varzea-grande/"><b>Várzea Grande</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/agua-boa/"><b>Água Boa</b><small>Mato Grosso</small></a>
-    <h3 class="uf">Acre</h3>
-    <a class="cid" href="/ac/acrelandia/"><b>Acrelândia</b><small>Acre</small></a>
-    <a class="cid" href="/ac/feijo/"><b>Feijó</b><small>Acre</small></a>
-    <a class="cid" href="/ac/mancio-lima/"><b>Mâncio Lima</b><small>Acre</small></a>
-    <a class="cid" href="/ac/rio-branco/"><b>Rio Branco</b><small>Acre</small></a>
-    <a class="cid" href="/ac/rodrigues-alves/"><b>Rodrigues Alves</b><small>Acre</small></a>
-    <h3 class="uf">Alagoas</h3>
-    <a class="cid" href="/al/marechal-deodoro/"><b>Marechal Deodoro</b><small>Alagoas</small></a>
-    <a class="cid" href="/al/rio-largo/"><b>Rio Largo</b><small>Alagoas</small></a>
-    <h3 class="uf">Amapá</h3>
-    <a class="cid" href="/ap/porto-grande/"><b>Porto Grande</b><small>Amapá</small></a>
-    <a class="cid" href="/ap/santana/"><b>Santana</b><small>Amapá</small></a>
-    <h3 class="uf">Amazonas</h3>
-    <a class="cid" href="/am/coari/"><b>Coari</b><small>Amazonas</small></a>
-    <a class="cid" href="/am/iranduba/"><b>Iranduba</b><small>Amazonas</small></a>
-    <a class="cid" href="/am/manacapuru/"><b>Manacapuru</b><small>Amazonas</small></a>
-    <a class="cid" href="/am/manicore/"><b>Manicoré</b><small>Amazonas</small></a>
-    <a class="cid" href="/am/parintins/"><b>Parintins</b><small>Amazonas</small></a>
-    <a class="cid" href="/am/tefe/"><b>Tefé</b><small>Amazonas</small></a>
-    <h3 class="uf">Bahia</h3>
-    <a class="cid" href="/ba/camacari/"><b>Camaçari</b><small>Bahia</small></a>
-    <a class="cid" href="/ba/ilheus/"><b>Ilhéus</b><small>Bahia</small></a>
-    <a class="cid" href="/ba/itabuna/"><b>Itabuna</b><small>Bahia</small></a>
-    <a class="cid" href="/ba/jequie/"><b>Jequié</b><small>Bahia</small></a>
-    <a class="cid" href="/ba/juazeiro/"><b>Juazeiro</b><small>Bahia</small></a>
-    <a class="cid" href="/ba/paulo-afonso/"><b>Paulo Afonso</b><small>Bahia</small></a>
-    <a class="cid" href="/ba/vitoria-da-conquista/"><b>Vitória da Conquista</b><small>Bahia</small></a>
-    <h3 class="uf">Ceará</h3>
-    <a class="cid" href="/ce/aquiraz/"><b>Aquiraz</b><small>Ceará</small></a>
-    <a class="cid" href="/ce/fortaleza/"><b>Fortaleza</b><small>Ceará</small></a>
-    <h3 class="uf">Espírito Santo</h3>
-    <a class="cid" href="/es/aracruz/"><b>Aracruz</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/barra-de-sao-francisco/"><b>Barra de São Francisco</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/cachoeiro-de-itapemirim/"><b>Cachoeiro de Itapemirim</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/cariacica/"><b>Cariacica</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/colatina/"><b>Colatina</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/marataizes/"><b>Marataízes</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/santa-maria-de-jetiba/"><b>Santa Maria de Jetibá</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/serra/"><b>Serra</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/sao-mateus/"><b>São Mateus</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/es/vila-velha/"><b>Vila Velha</b><small>Espírito Santo</small></a>
-    <h3 class="uf">Goiás</h3>
-    <a class="cid" href="/go/anapolis/"><b>Anápolis</b><small>Goiás</small></a>
-    <a class="cid" href="/go/catalao/"><b>Catalão</b><small>Goiás</small></a>
-    <a class="cid" href="/go/formosa/"><b>Formosa</b><small>Goiás</small></a>
-    <a class="cid" href="/go/luziania/"><b>Luziânia</b><small>Goiás</small></a>
-    <h3 class="uf">Maranhão</h3>
-    <a class="cid" href="/ma/bacabal/"><b>Bacabal</b><small>Maranhão</small></a>
-    <h3 class="uf">Mato Grosso do Sul</h3>
-    <a class="cid" href="/ms/amambai/"><b>Amambai</b><small>Mato Grosso do Sul</small></a>
-    <a class="cid" href="/ms/dourados/"><b>Dourados</b><small>Mato Grosso do Sul</small></a>
-    <a class="cid" href="/ms/navirai/"><b>Naviraí</b><small>Mato Grosso do Sul</small></a>
-    <a class="cid" href="/ms/nova-andradina/"><b>Nova Andradina</b><small>Mato Grosso do Sul</small></a>
-    <a class="cid" href="/ms/rio-brilhante/"><b>Rio Brilhante</b><small>Mato Grosso do Sul</small></a>
-    <a class="cid" href="/ms/sidrolandia/"><b>Sidrolândia</b><small>Mato Grosso do Sul</small></a>
-    <h3 class="uf">Minas Gerais</h3>
-    <a class="cid" href="/mg/araguari/"><b>Araguari</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/araxa/"><b>Araxá</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/conselheiro-lafaiete/"><b>Conselheiro Lafaiete</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/contagem/"><b>Contagem</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/divinopolis/"><b>Divinópolis</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/ibirite/"><b>Ibirité</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/lavras/"><b>Lavras</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/montes-claros/"><b>Montes Claros</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/nova-lima/"><b>Nova Lima</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/nova-serrana/"><b>Nova Serrana</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/patos-de-minas/"><b>Patos de Minas</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/sabara/"><b>Sabará</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/santa-luzia/"><b>Santa Luzia</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/sete-lagoas/"><b>Sete Lagoas</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/mg/varginha/"><b>Varginha</b><small>Minas Gerais</small></a>
-    <h3 class="uf">Paraná</h3>
-    <a class="cid" href="/pr/almirante-tamandare/"><b>Almirante Tamandaré</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/apucarana/"><b>Apucarana</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/arapongas/"><b>Arapongas</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/araucaria/"><b>Araucária</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/cambe/"><b>Cambé</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/campo-largo/"><b>Campo Largo</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/cascavel/"><b>Cascavel</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/fazenda-rio-grande/"><b>Fazenda Rio Grande</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/foz-do-iguacu/"><b>Foz do Iguaçu</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/piraquara/"><b>Piraquara</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/sarandi/"><b>Sarandi</b><small>Paraná</small></a>
-    <a class="cid" href="/pr/toledo/"><b>Toledo</b><small>Paraná</small></a>
-    <h3 class="uf">Paraíba</h3>
-    <a class="cid" href="/pb/bayeux/"><b>Bayeux</b><small>Paraíba</small></a>
-    <a class="cid" href="/pb/cabedelo/"><b>Cabedelo</b><small>Paraíba</small></a>
-    <a class="cid" href="/pb/cajazeiras/"><b>Cajazeiras</b><small>Paraíba</small></a>
-    <a class="cid" href="/pb/campina-grande/"><b>Campina Grande</b><small>Paraíba</small></a>
-    <a class="cid" href="/pb/guarabira/"><b>Guarabira</b><small>Paraíba</small></a>
-    <a class="cid" href="/pb/joao-pessoa/"><b>João Pessoa</b><small>Paraíba</small></a>
-    <a class="cid" href="/pb/santa-rita/"><b>Santa Rita</b><small>Paraíba</small></a>
-    <h3 class="uf">Pará</h3>
-    <a class="cid" href="/pa/altamira/"><b>Altamira</b><small>Pará</small></a>
-    <a class="cid" href="/pa/maraba/"><b>Marabá</b><small>Pará</small></a>
-    <a class="cid" href="/pa/parauapebas/"><b>Parauapebas</b><small>Pará</small></a>
-    <a class="cid" href="/pa/santarem/"><b>Santarém</b><small>Pará</small></a>
-    <h3 class="uf">Pernambuco</h3>
-    <a class="cid" href="/pe/cabo-de-santo-agostinho/"><b>Cabo de Santo Agostinho</b><small>Pernambuco</small></a>
-    <a class="cid" href="/pe/caruaru/"><b>Caruaru</b><small>Pernambuco</small></a>
-    <a class="cid" href="/pe/igarassu/"><b>Igarassu</b><small>Pernambuco</small></a>
-    <a class="cid" href="/pe/olinda/"><b>Olinda</b><small>Pernambuco</small></a>
-    <a class="cid" href="/pe/santa-cruz-do-capibaribe/"><b>Santa Cruz do Capibaribe</b><small>Pernambuco</small></a>
-    <a class="cid" href="/pe/sao-lourenco-da-mata/"><b>São Lourenço da Mata</b><small>Pernambuco</small></a>
-    <h3 class="uf">Piauí</h3>
-    <a class="cid" href="/pi/campo-maior/"><b>Campo Maior</b><small>Piauí</small></a>
-    <a class="cid" href="/pi/esperantina/"><b>Esperantina</b><small>Piauí</small></a>
-    <h3 class="uf">Rio Grande do Norte</h3>
-    <a class="cid" href="/rn/apodi/"><b>Apodi</b><small>Rio Grande do Norte</small></a>
-    <a class="cid" href="/rn/caico/"><b>Caicó</b><small>Rio Grande do Norte</small></a>
-    <a class="cid" href="/rn/currais-novos/"><b>Currais Novos</b><small>Rio Grande do Norte</small></a>
-    <a class="cid" href="/rn/natal/"><b>Natal</b><small>Rio Grande do Norte</small></a>
-    <a class="cid" href="/rn/nova-cruz/"><b>Nova Cruz</b><small>Rio Grande do Norte</small></a>
-    <a class="cid" href="/rn/parnamirim/"><b>Parnamirim</b><small>Rio Grande do Norte</small></a>
-    <a class="cid" href="/rn/santa-cruz/"><b>Santa Cruz</b><small>Rio Grande do Norte</small></a>
-    <a class="cid" href="/rn/sao-jose-de-mipibu/"><b>São José de Mipibu</b><small>Rio Grande do Norte</small></a>
-    <h3 class="uf">Rio Grande do Sul</h3>
-    <a class="cid" href="/rs/cachoeirinha/"><b>Cachoeirinha</b><small>Rio Grande do Sul</small></a>
-    <a class="cid" href="/rs/erechim/"><b>Erechim</b><small>Rio Grande do Sul</small></a>
-    <a class="cid" href="/rs/rio-grande/"><b>Rio Grande</b><small>Rio Grande do Sul</small></a>
-    <a class="cid" href="/rs/uruguaiana/"><b>Uruguaiana</b><small>Rio Grande do Sul</small></a>
-    <h3 class="uf">Rio de Janeiro</h3>
-    <a class="cid" href="/rj/barra-mansa/"><b>Barra Mansa</b><small>Rio de Janeiro</small></a>
-    <a class="cid" href="/rj/belford-roxo/"><b>Belford Roxo</b><small>Rio de Janeiro</small></a>
-    <a class="cid" href="/rj/itaguai/"><b>Itaguaí</b><small>Rio de Janeiro</small></a>
-    <a class="cid" href="/rj/macae/"><b>Macaé</b><small>Rio de Janeiro</small></a>
-    <a class="cid" href="/rj/nova-friburgo/"><b>Nova Friburgo</b><small>Rio de Janeiro</small></a>
-    <a class="cid" href="/rj/rio-das-ostras/"><b>Rio das Ostras</b><small>Rio de Janeiro</small></a>
-    <a class="cid" href="/rj/sao-joao-de-meriti/"><b>São João de Meriti</b><small>Rio de Janeiro</small></a>
-    <a class="cid" href="/rj/volta-redonda/"><b>Volta Redonda</b><small>Rio de Janeiro</small></a>
-    <h3 class="uf">Rondônia</h3>
-    <a class="cid" href="/ro/buritis/"><b>Buritis</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/cacoal/"><b>Cacoal</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/espigao-d-oeste/"><b>Espigão D'Oeste</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/guajara-mirim/"><b>Guajará-Mirim</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/jaru/"><b>Jaru</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/ji-parana/"><b>Ji-Paraná</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/nova-mamore/"><b>Nova Mamoré</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/ouro-preto-do-oeste/"><b>Ouro Preto do Oeste</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/porto-velho/"><b>Porto Velho</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/rolim-de-moura/"><b>Rolim de Moura</b><small>Rondônia</small></a>
-    <a class="cid" href="/ro/vilhena/"><b>Vilhena</b><small>Rondônia</small></a>
-    <h3 class="uf">Roraima</h3>
-    <a class="cid" href="/rr/boa-vista/"><b>Boa Vista</b><small>Roraima</small></a>
-    <a class="cid" href="/rr/rorainopolis/"><b>Rorainópolis</b><small>Roraima</small></a>
-    <h3 class="uf">Santa Catarina</h3>
-    <a class="cid" href="/sc/criciuma/"><b>Criciúma</b><small>Santa Catarina</small></a>
-    <h3 class="uf">Sergipe</h3>
-    <a class="cid" href="/se/lagarto/"><b>Lagarto</b><small>Sergipe</small></a>
-    <h3 class="uf">São Paulo</h3>
-    <a class="cid" href="/sp/barueri/"><b>Barueri</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/campinas/"><b>Campinas</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/cotia/"><b>Cotia</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/franca/"><b>Franca</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/guaruja/"><b>Guarujá</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/guarulhos/"><b>Guarulhos</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/itaquaquecetuba/"><b>Itaquaquecetuba</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/sorocaba/"><b>Sorocaba</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/sumare/"><b>Sumaré</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/sao-jose-do-rio-preto/"><b>São José do Rio Preto</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/sao-vicente/"><b>São Vicente</b><small>São Paulo</small></a>
-    <a class="cid" href="/sp/taubate/"><b>Taubaté</b><small>São Paulo</small></a>
-    <h3 class="uf">Tocantins</h3>
-    <a class="cid" href="/to/lagoa-da-confusao/"><b>Lagoa da Confusão</b><small>Tocantins</small></a>
-    <a class="cid" href="/to/pedro-afonso/"><b>Pedro Afonso</b><small>Tocantins</small></a>
-    <a class="cid" href="/to/porto-nacional/"><b>Porto Nacional</b><small>Tocantins</small></a>
-    <div class="breve">Outras cidades de MT em breve.</div>
+  <h1>O que cada político faz, com dados oficiais.</h1>
+  <p class="lead">Presença, propostas, votos e licitações das câmaras municipais, Assembleias Legislativas e bancadas no Congresso, organizados a partir dos sistemas públicos e com link para a fonte.</p>
+  <p class="tot"><b>145</b> câmaras municipais · <b>19</b> Assembleias · <b>27</b> bancadas no Congresso</p>
+  <div class="barra">
+    <div class="linha1">
+      <input type="search" id="q" placeholder="Procure cidade ou estado" autocomplete="off" aria-label="Procurar">
+      <div class="tipos" role="group" aria-label="Tipo">
+        <button class="on" data-t="">Tudo</button><button data-t="c">Câmaras</button><button data-t="a">Assembleias</button><button data-t="b">Congresso</button>
+      </div>
+    </div>
+    <div class="ufs" id="ufs" role="group" aria-label="Estado">
+      <button class="on" data-uf="">Todos</button>
+      <button data-uf="MT" title="Mato Grosso">MT</button>
+      <button data-uf="AC" title="Acre">AC</button>
+      <button data-uf="AL" title="Alagoas">AL</button>
+      <button data-uf="AP" title="Amapá">AP</button>
+      <button data-uf="AM" title="Amazonas">AM</button>
+      <button data-uf="BA" title="Bahia">BA</button>
+      <button data-uf="CE" title="Ceará">CE</button>
+      <button data-uf="DF" title="Distrito Federal">DF</button>
+      <button data-uf="ES" title="Espírito Santo">ES</button>
+      <button data-uf="GO" title="Goiás">GO</button>
+      <button data-uf="MA" title="Maranhão">MA</button>
+      <button data-uf="MS" title="Mato Grosso do Sul">MS</button>
+      <button data-uf="MG" title="Minas Gerais">MG</button>
+      <button data-uf="PA" title="Pará">PA</button>
+      <button data-uf="PB" title="Paraíba">PB</button>
+      <button data-uf="PR" title="Paraná">PR</button>
+      <button data-uf="PE" title="Pernambuco">PE</button>
+      <button data-uf="PI" title="Piauí">PI</button>
+      <button data-uf="RJ" title="Rio de Janeiro">RJ</button>
+      <button data-uf="RN" title="Rio Grande do Norte">RN</button>
+      <button data-uf="RS" title="Rio Grande do Sul">RS</button>
+      <button data-uf="RO" title="Rondônia">RO</button>
+      <button data-uf="RR" title="Roraima">RR</button>
+      <button data-uf="SC" title="Santa Catarina">SC</button>
+      <button data-uf="SP" title="São Paulo">SP</button>
+      <button data-uf="SE" title="Sergipe">SE</button>
+      <button data-uf="TO" title="Tocantins">TO</button>
+    </div>
   </div>
-  <h2>Congresso: a bancada de cada estado</h2>
-  <p class="lead" style="margin-bottom:12px">Deputados federais e senadores: votos, presença nas votações, propostas e cota parlamentar.</p>
-  <div class="cidades estados">
-    <a class="cid" href="/congresso-ac/"><b>Acre</b><small>Bancada de AC</small></a>
-    <a class="cid" href="/congresso-al/"><b>Alagoas</b><small>Bancada de AL</small></a>
-    <a class="cid" href="/congresso-ap/"><b>Amapá</b><small>Bancada de AP</small></a>
-    <a class="cid" href="/congresso-am/"><b>Amazonas</b><small>Bancada de AM</small></a>
-    <a class="cid" href="/congresso-ba/"><b>Bahia</b><small>Bancada de BA</small></a>
-    <a class="cid" href="/congresso-ce/"><b>Ceará</b><small>Bancada de CE</small></a>
-    <a class="cid" href="/congresso-df/"><b>Distrito Federal</b><small>Bancada de DF</small></a>
-    <a class="cid" href="/congresso-es/"><b>Espírito Santo</b><small>Bancada de ES</small></a>
-    <a class="cid" href="/congresso-go/"><b>Goiás</b><small>Bancada de GO</small></a>
-    <a class="cid" href="/congresso-ma/"><b>Maranhão</b><small>Bancada de MA</small></a>
-    <a class="cid" href="/congresso-mt/"><b>Mato Grosso</b><small>Bancada de MT</small></a>
-    <a class="cid" href="/congresso-ms/"><b>Mato Grosso do Sul</b><small>Bancada de MS</small></a>
-    <a class="cid" href="/congresso-mg/"><b>Minas Gerais</b><small>Bancada de MG</small></a>
-    <a class="cid" href="/congresso-pr/"><b>Paraná</b><small>Bancada de PR</small></a>
-    <a class="cid" href="/congresso-pb/"><b>Paraíba</b><small>Bancada de PB</small></a>
-    <a class="cid" href="/congresso-pa/"><b>Pará</b><small>Bancada de PA</small></a>
-    <a class="cid" href="/congresso-pe/"><b>Pernambuco</b><small>Bancada de PE</small></a>
-    <a class="cid" href="/congresso-pi/"><b>Piauí</b><small>Bancada de PI</small></a>
-    <a class="cid" href="/congresso-rn/"><b>Rio Grande do Norte</b><small>Bancada de RN</small></a>
-    <a class="cid" href="/congresso-rs/"><b>Rio Grande do Sul</b><small>Bancada de RS</small></a>
-    <a class="cid" href="/congresso-rj/"><b>Rio de Janeiro</b><small>Bancada de RJ</small></a>
-    <a class="cid" href="/congresso-ro/"><b>Rondônia</b><small>Bancada de RO</small></a>
-    <a class="cid" href="/congresso-rr/"><b>Roraima</b><small>Bancada de RR</small></a>
-    <a class="cid" href="/congresso-sc/"><b>Santa Catarina</b><small>Bancada de SC</small></a>
-    <a class="cid" href="/congresso-se/"><b>Sergipe</b><small>Bancada de SE</small></a>
-    <a class="cid" href="/congresso-sp/"><b>São Paulo</b><small>Bancada de SP</small></a>
-    <a class="cid" href="/congresso-to/"><b>Tocantins</b><small>Bancada de TO</small></a>
-  </div>
-  <h2>Assembleias Legislativas</h2>
-  <div class="cidades">
-    <a class="cid" href="/assembleia-ac/"><b>Assembleia Legislativa de Acre</b><small>Acre</small></a>
-    <a class="cid" href="/assembleia-al/"><b>Assembleia Legislativa de Alagoas</b><small>Alagoas</small></a>
-    <a class="cid" href="/assembleia-ap/"><b>Assembleia Legislativa do Amapá</b><small>Amapá</small></a>
-    <a class="cid" href="/assembleia-am/"><b>Assembleia Legislativa de Amazonas</b><small>Amazonas</small></a>
-    <a class="cid" href="/assembleia-ba/"><b>Assembleia Legislativa de Bahia</b><small>Bahia</small></a>
-    <a class="cid" href="/assembleia-df/"><b>Câmara Legislativa do Distrito Federal</b><small>Distrito Federal</small></a>
-    <a class="cid" href="/assembleia-es/"><b>Assembleia Legislativa do Espírito Santo</b><small>Espírito Santo</small></a>
-    <a class="cid" href="/almt/"><b>Assembleia Legislativa de Mato Grosso</b><small>Mato Grosso</small></a>
-    <a class="cid" href="/assembleia-mg/"><b>Assembleia Legislativa de Minas Gerais</b><small>Minas Gerais</small></a>
-    <a class="cid" href="/assembleia-pr/"><b>Assembleia Legislativa do Paraná</b><small>Paraná</small></a>
-    <a class="cid" href="/assembleia-pb/"><b>Assembleia Legislativa de Paraíba</b><small>Paraíba</small></a>
-    <a class="cid" href="/assembleia-pe/"><b>Assembleia Legislativa de Pernambuco</b><small>Pernambuco</small></a>
-    <a class="cid" href="/assembleia-pi/"><b>Assembleia Legislativa de Piauí</b><small>Piauí</small></a>
-    <a class="cid" href="/assembleia-rn/"><b>Assembleia Legislativa do Rio Grande do Norte</b><small>Rio Grande do Norte</small></a>
-    <a class="cid" href="/assembleia-rs/"><b>Assembleia Legislativa do Rio Grande do Sul</b><small>Rio Grande do Sul</small></a>
-    <a class="cid" href="/assembleia-ro/"><b>Assembleia Legislativa de Rondônia</b><small>Rondônia</small></a>
-    <a class="cid" href="/assembleia-rr/"><b>Assembleia Legislativa de Roraima</b><small>Roraima</small></a>
-    <a class="cid" href="/assembleia-sc/"><b>Assembleia Legislativa de Santa Catarina</b><small>Santa Catarina</small></a>
-    <a class="cid" href="/assembleia-se/"><b>Assembleia Legislativa de Sergipe</b><small>Sergipe</small></a>
-
-    <div class="breve">Outras assembleias em breve.</div>
-  </div>
+  <section class="est" id="uf-mt" data-uf="MT" data-nome="Mato Grosso"><h2>Mato Grosso <small>22 câmaras</small></h2><div class="casas"><a data-t="a" href="/almt/">Assembleia Legislativa</a><a data-t="b" href="/congresso-mt/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/agua-boa/">Água Boa</a></li><li><a data-t="c" href="/alta-floresta/">Alta Floresta</a></li><li><a data-t="c" href="/barra-do-garcas/">Barra do Garças</a></li><li><a data-t="c" href="/caceres/">Cáceres</a></li><li><a data-t="c" href="/campo-novo-do-parecis/">Campo Novo do Parecis</a></li><li><a data-t="c" href="/campo-verde/">Campo Verde</a></li><li><a data-t="c" href="/confresa/">Confresa</a></li><li><a data-t="c" href="/cuiaba/">Cuiabá</a></li><li><a data-t="c" href="/juara/">Juara</a></li><li><a data-t="c" href="/juina/">Juína</a></li><li><a data-t="c" href="/lucas-do-rio-verde/">Lucas do Rio Verde</a></li><li><a data-t="c" href="/nova-mutum/">Nova Mutum</a></li><li><a data-t="c" href="/peixoto-de-azevedo/">Peixoto de Azevedo</a></li><li><a data-t="c" href="/pontes-e-lacerda/">Pontes e Lacerda</a></li><li><a data-t="c" href="/primavera-do-leste/">Primavera do Leste</a></li><li><a data-t="c" href="/querencia/">Querência</a></li><li><a data-t="c" href="/rondonopolis/">Rondonópolis</a></li><li><a data-t="c" href="/sapezal/">Sapezal</a></li><li><a data-t="c" href="/sinop/">Sinop</a></li><li><a data-t="c" href="/sorriso/">Sorriso</a></li><li><a data-t="c" href="/tangara-da-serra/">Tangará da Serra</a></li><li><a data-t="c" href="/varzea-grande/">Várzea Grande</a></li></ul></section>
+  <section class="est" id="uf-ac" data-uf="AC" data-nome="Acre"><h2>Acre <small>2 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-ac/">Assembleia Legislativa</a><a data-t="b" href="/congresso-ac/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/ac/acrelandia/">Acrelândia</a></li><li><a data-t="c" href="/ac/rio-branco/">Rio Branco</a></li></ul></section>
+  <section class="est" id="uf-al" data-uf="AL" data-nome="Alagoas"><h2>Alagoas <small>2 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-al/">Assembleia Legislativa</a><a data-t="b" href="/congresso-al/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/al/marechal-deodoro/">Marechal Deodoro</a></li><li><a data-t="c" href="/al/rio-largo/">Rio Largo</a></li></ul></section>
+  <section class="est" id="uf-ap" data-uf="AP" data-nome="Amapá"><h2>Amapá <small>2 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-ap/">Assembleia Legislativa</a><a data-t="b" href="/congresso-ap/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/ap/porto-grande/">Porto Grande</a></li><li><a data-t="c" href="/ap/santana/">Santana</a></li></ul></section>
+  <section class="est" id="uf-am" data-uf="AM" data-nome="Amazonas"><h2>Amazonas <small>6 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-am/">Assembleia Legislativa</a><a data-t="b" href="/congresso-am/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/am/coari/">Coari</a></li><li><a data-t="c" href="/am/iranduba/">Iranduba</a></li><li><a data-t="c" href="/am/manacapuru/">Manacapuru</a></li><li><a data-t="c" href="/am/manicore/">Manicoré</a></li><li><a data-t="c" href="/am/parintins/">Parintins</a></li><li><a data-t="c" href="/am/tefe/">Tefé</a></li></ul></section>
+  <section class="est" id="uf-ba" data-uf="BA" data-nome="Bahia"><h2>Bahia <small>5 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-ba/">Assembleia Legislativa</a><a data-t="b" href="/congresso-ba/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/ba/camacari/">Camaçari</a></li><li><a data-t="c" href="/ba/ilheus/">Ilhéus</a></li><li><a data-t="c" href="/ba/jequie/">Jequié</a></li><li><a data-t="c" href="/ba/paulo-afonso/">Paulo Afonso</a></li><li><a data-t="c" href="/ba/vitoria-da-conquista/">Vitória da Conquista</a></li></ul></section>
+  <section class="est" id="uf-ce" data-uf="CE" data-nome="Ceará"><h2>Ceará <small>2 câmaras</small></h2><div class="casas"><a data-t="b" href="/congresso-ce/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/ce/aquiraz/">Aquiraz</a></li><li><a data-t="c" href="/ce/fortaleza/">Fortaleza</a></li></ul></section>
+  <section class="est" id="uf-df" data-uf="DF" data-nome="Distrito Federal"><h2>Distrito Federal <small>câmaras municipais em breve</small></h2><div class="casas"><a data-t="a" href="/assembleia-df/">Assembleia Legislativa</a><a data-t="b" href="/congresso-df/">Bancada no Congresso</a></div></section>
+  <section class="est" id="uf-es" data-uf="ES" data-nome="Espírito Santo"><h2>Espírito Santo <small>7 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-es/">Assembleia Legislativa</a><a data-t="b" href="/congresso-es/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/es/cachoeiro-de-itapemirim/">Cachoeiro de Itapemirim</a></li><li><a data-t="c" href="/es/cariacica/">Cariacica</a></li><li><a data-t="c" href="/es/colatina/">Colatina</a></li><li><a data-t="c" href="/es/marataizes/">Marataízes</a></li><li><a data-t="c" href="/es/santa-maria-de-jetiba/">Santa Maria de Jetibá</a></li><li><a data-t="c" href="/es/sao-mateus/">São Mateus</a></li><li><a data-t="c" href="/es/vila-velha/">Vila Velha</a></li></ul></section>
+  <section class="est" id="uf-go" data-uf="GO" data-nome="Goiás"><h2>Goiás <small>4 câmaras</small></h2><div class="casas"><a data-t="b" href="/congresso-go/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/go/anapolis/">Anápolis</a></li><li><a data-t="c" href="/go/catalao/">Catalão</a></li><li><a data-t="c" href="/go/formosa/">Formosa</a></li><li><a data-t="c" href="/go/luziania/">Luziânia</a></li></ul></section>
+  <section class="est" id="uf-ma" data-uf="MA" data-nome="Maranhão"><h2>Maranhão <small>1 câmara</small></h2><div class="casas"><a data-t="b" href="/congresso-ma/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/ma/bacabal/">Bacabal</a></li></ul></section>
+  <section class="est" id="uf-ms" data-uf="MS" data-nome="Mato Grosso do Sul"><h2>Mato Grosso do Sul <small>4 câmaras</small></h2><div class="casas"><a data-t="b" href="/congresso-ms/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/ms/amambai/">Amambai</a></li><li><a data-t="c" href="/ms/dourados/">Dourados</a></li><li><a data-t="c" href="/ms/nova-andradina/">Nova Andradina</a></li><li><a data-t="c" href="/ms/sidrolandia/">Sidrolândia</a></li></ul></section>
+  <section class="est" id="uf-mg" data-uf="MG" data-nome="Minas Gerais"><h2>Minas Gerais <small>14 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-mg/">Assembleia Legislativa</a><a data-t="b" href="/congresso-mg/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/mg/araguari/">Araguari</a></li><li><a data-t="c" href="/mg/araxa/">Araxá</a></li><li><a data-t="c" href="/mg/conselheiro-lafaiete/">Conselheiro Lafaiete</a></li><li><a data-t="c" href="/mg/contagem/">Contagem</a></li><li><a data-t="c" href="/mg/divinopolis/">Divinópolis</a></li><li><a data-t="c" href="/mg/lavras/">Lavras</a></li><li><a data-t="c" href="/mg/montes-claros/">Montes Claros</a></li><li><a data-t="c" href="/mg/nova-lima/">Nova Lima</a></li><li><a data-t="c" href="/mg/nova-serrana/">Nova Serrana</a></li><li><a data-t="c" href="/mg/patos-de-minas/">Patos de Minas</a></li><li><a data-t="c" href="/mg/sabara/">Sabará</a></li><li><a data-t="c" href="/mg/santa-luzia/">Santa Luzia</a></li><li><a data-t="c" href="/mg/sete-lagoas/">Sete Lagoas</a></li><li><a data-t="c" href="/mg/varginha/">Varginha</a></li></ul></section>
+  <section class="est" id="uf-pa" data-uf="PA" data-nome="Pará"><h2>Pará <small>3 câmaras</small></h2><div class="casas"><a data-t="b" href="/congresso-pa/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/pa/altamira/">Altamira</a></li><li><a data-t="c" href="/pa/parauapebas/">Parauapebas</a></li><li><a data-t="c" href="/pa/santarem/">Santarém</a></li></ul></section>
+  <section class="est" id="uf-pb" data-uf="PB" data-nome="Paraíba"><h2>Paraíba <small>7 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-pb/">Assembleia Legislativa</a><a data-t="b" href="/congresso-pb/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/pb/bayeux/">Bayeux</a></li><li><a data-t="c" href="/pb/cabedelo/">Cabedelo</a></li><li><a data-t="c" href="/pb/cajazeiras/">Cajazeiras</a></li><li><a data-t="c" href="/pb/campina-grande/">Campina Grande</a></li><li><a data-t="c" href="/pb/guarabira/">Guarabira</a></li><li><a data-t="c" href="/pb/joao-pessoa/">João Pessoa</a></li><li><a data-t="c" href="/pb/santa-rita/">Santa Rita</a></li></ul></section>
+  <section class="est" id="uf-pr" data-uf="PR" data-nome="Paraná"><h2>Paraná <small>11 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-pr/">Assembleia Legislativa</a><a data-t="b" href="/congresso-pr/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/pr/almirante-tamandare/">Almirante Tamandaré</a></li><li><a data-t="c" href="/pr/apucarana/">Apucarana</a></li><li><a data-t="c" href="/pr/arapongas/">Arapongas</a></li><li><a data-t="c" href="/pr/araucaria/">Araucária</a></li><li><a data-t="c" href="/pr/cambe/">Cambé</a></li><li><a data-t="c" href="/pr/campo-largo/">Campo Largo</a></li><li><a data-t="c" href="/pr/cascavel/">Cascavel</a></li><li><a data-t="c" href="/pr/fazenda-rio-grande/">Fazenda Rio Grande</a></li><li><a data-t="c" href="/pr/foz-do-iguacu/">Foz do Iguaçu</a></li><li><a data-t="c" href="/pr/piraquara/">Piraquara</a></li><li><a data-t="c" href="/pr/sarandi/">Sarandi</a></li></ul></section>
+  <section class="est" id="uf-pe" data-uf="PE" data-nome="Pernambuco"><h2>Pernambuco <small>6 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-pe/">Assembleia Legislativa</a><a data-t="b" href="/congresso-pe/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/pe/cabo-de-santo-agostinho/">Cabo de Santo Agostinho</a></li><li><a data-t="c" href="/pe/caruaru/">Caruaru</a></li><li><a data-t="c" href="/pe/igarassu/">Igarassu</a></li><li><a data-t="c" href="/pe/olinda/">Olinda</a></li><li><a data-t="c" href="/pe/santa-cruz-do-capibaribe/">Santa Cruz do Capibaribe</a></li><li><a data-t="c" href="/pe/sao-lourenco-da-mata/">São Lourenço da Mata</a></li></ul></section>
+  <section class="est" id="uf-pi" data-uf="PI" data-nome="Piauí"><h2>Piauí <small>2 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-pi/">Assembleia Legislativa</a><a data-t="b" href="/congresso-pi/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/pi/campo-maior/">Campo Maior</a></li><li><a data-t="c" href="/pi/esperantina/">Esperantina</a></li></ul></section>
+  <section class="est" id="uf-rj" data-uf="RJ" data-nome="Rio de Janeiro"><h2>Rio de Janeiro <small>8 câmaras</small></h2><div class="casas"><a data-t="b" href="/congresso-rj/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/rj/barra-mansa/">Barra Mansa</a></li><li><a data-t="c" href="/rj/belford-roxo/">Belford Roxo</a></li><li><a data-t="c" href="/rj/itaguai/">Itaguaí</a></li><li><a data-t="c" href="/rj/macae/">Macaé</a></li><li><a data-t="c" href="/rj/nova-friburgo/">Nova Friburgo</a></li><li><a data-t="c" href="/rj/rio-das-ostras/">Rio das Ostras</a></li><li><a data-t="c" href="/rj/sao-joao-de-meriti/">São João de Meriti</a></li><li><a data-t="c" href="/rj/volta-redonda/">Volta Redonda</a></li></ul></section>
+  <section class="est" id="uf-rn" data-uf="RN" data-nome="Rio Grande do Norte"><h2>Rio Grande do Norte <small>8 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-rn/">Assembleia Legislativa</a><a data-t="b" href="/congresso-rn/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/rn/apodi/">Apodi</a></li><li><a data-t="c" href="/rn/caico/">Caicó</a></li><li><a data-t="c" href="/rn/currais-novos/">Currais Novos</a></li><li><a data-t="c" href="/rn/natal/">Natal</a></li><li><a data-t="c" href="/rn/nova-cruz/">Nova Cruz</a></li><li><a data-t="c" href="/rn/parnamirim/">Parnamirim</a></li><li><a data-t="c" href="/rn/santa-cruz/">Santa Cruz</a></li><li><a data-t="c" href="/rn/sao-jose-de-mipibu/">São José de Mipibu</a></li></ul></section>
+  <section class="est" id="uf-rs" data-uf="RS" data-nome="Rio Grande do Sul"><h2>Rio Grande do Sul <small>3 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-rs/">Assembleia Legislativa</a><a data-t="b" href="/congresso-rs/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/rs/cachoeirinha/">Cachoeirinha</a></li><li><a data-t="c" href="/rs/rio-grande/">Rio Grande</a></li><li><a data-t="c" href="/rs/uruguaiana/">Uruguaiana</a></li></ul></section>
+  <section class="est" id="uf-ro" data-uf="RO" data-nome="Rondônia"><h2>Rondônia <small>11 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-ro/">Assembleia Legislativa</a><a data-t="b" href="/congresso-ro/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/ro/buritis/">Buritis</a></li><li><a data-t="c" href="/ro/cacoal/">Cacoal</a></li><li><a data-t="c" href="/ro/espigao-d-oeste/">Espigão D'Oeste</a></li><li><a data-t="c" href="/ro/guajara-mirim/">Guajará-Mirim</a></li><li><a data-t="c" href="/ro/jaru/">Jaru</a></li><li><a data-t="c" href="/ro/ji-parana/">Ji-Paraná</a></li><li><a data-t="c" href="/ro/nova-mamore/">Nova Mamoré</a></li><li><a data-t="c" href="/ro/ouro-preto-do-oeste/">Ouro Preto do Oeste</a></li><li><a data-t="c" href="/ro/porto-velho/">Porto Velho</a></li><li><a data-t="c" href="/ro/rolim-de-moura/">Rolim de Moura</a></li><li><a data-t="c" href="/ro/vilhena/">Vilhena</a></li></ul></section>
+  <section class="est" id="uf-rr" data-uf="RR" data-nome="Roraima"><h2>Roraima <small>2 câmaras</small></h2><div class="casas"><a data-t="a" href="/assembleia-rr/">Assembleia Legislativa</a><a data-t="b" href="/congresso-rr/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/rr/boa-vista/">Boa Vista</a></li><li><a data-t="c" href="/rr/rorainopolis/">Rorainópolis</a></li></ul></section>
+  <section class="est" id="uf-sc" data-uf="SC" data-nome="Santa Catarina"><h2>Santa Catarina <small>1 câmara</small></h2><div class="casas"><a data-t="a" href="/assembleia-sc/">Assembleia Legislativa</a><a data-t="b" href="/congresso-sc/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/sc/criciuma/">Criciúma</a></li></ul></section>
+  <section class="est" id="uf-sp" data-uf="SP" data-nome="São Paulo"><h2>São Paulo <small>8 câmaras</small></h2><div class="casas"><a data-t="b" href="/congresso-sp/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/sp/barueri/">Barueri</a></li><li><a data-t="c" href="/sp/campinas/">Campinas</a></li><li><a data-t="c" href="/sp/franca/">Franca</a></li><li><a data-t="c" href="/sp/sao-jose-do-rio-preto/">São José do Rio Preto</a></li><li><a data-t="c" href="/sp/sao-vicente/">São Vicente</a></li><li><a data-t="c" href="/sp/sorocaba/">Sorocaba</a></li><li><a data-t="c" href="/sp/sumare/">Sumaré</a></li><li><a data-t="c" href="/sp/taubate/">Taubaté</a></li></ul></section>
+  <section class="est" id="uf-se" data-uf="SE" data-nome="Sergipe"><h2>Sergipe <small>1 câmara</small></h2><div class="casas"><a data-t="a" href="/assembleia-se/">Assembleia Legislativa</a><a data-t="b" href="/congresso-se/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/se/lagarto/">Lagarto</a></li></ul></section>
+  <section class="est" id="uf-to" data-uf="TO" data-nome="Tocantins"><h2>Tocantins <small>3 câmaras</small></h2><div class="casas"><a data-t="b" href="/congresso-to/">Bancada no Congresso</a></div><ul class="cids"><li><a data-t="c" href="/to/lagoa-da-confusao/">Lagoa da Confusão</a></li><li><a data-t="c" href="/to/pedro-afonso/">Pedro Afonso</a></li><li><a data-t="c" href="/to/porto-nacional/">Porto Nacional</a></li></ul></section>
+  <p class="vazio" id="vazio">Nada encontrado. Outras cidades entram aos poucos.</p>
   <footer>Radar da Câmara · projeto independente de transparência · só dados públicos.</footer>
 </main>
 <script>
-document.getElementById('q').addEventListener('input',function(){
-  var q=this.value.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
-  document.querySelectorAll('#lista a.cid').forEach(function(a){ a.hidden = q && a.textContent.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().indexOf(q)<0; });
-  document.querySelectorAll('#lista h3.uf').forEach(function(h){ h.hidden = !!q; });
-});
+(function(){
+  var sem=function(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();};
+  var q=document.getElementById('q'), tipo='', uf='';
+  var secoes=[].slice.call(document.querySelectorAll('section.est'));
+  function aplicar(){
+    var t=sem(q.value), algum=false;
+    secoes.forEach(function(s){
+      var okUf=!uf||s.dataset.uf===uf, nomeEst=t&&sem(s.dataset.nome).indexOf(t)>=0, vis=0;
+      s.querySelectorAll('[data-t]').forEach(function(a){
+        var ok=okUf&&(!tipo||a.dataset.t===tipo)&&(!t||nomeEst||sem(a.textContent).indexOf(t)>=0);
+        (a.closest('li')||a).hidden=!ok; if(ok)vis++;
+      });
+      s.querySelector('.casas').hidden=!s.querySelector('.casas a:not([hidden])');
+      var ul=s.querySelector('ul.cids'); if(ul) ul.hidden=!ul.querySelector('li:not([hidden])');
+      s.hidden=!vis; if(vis)algum=true;
+    });
+    document.getElementById('vazio').style.display=algum?'none':'block';
+  }
+  q.addEventListener('input',aplicar);
+  document.querySelectorAll('.tipos button').forEach(function(b){b.onclick=function(){
+    document.querySelectorAll('.tipos button').forEach(function(x){x.classList.toggle('on',x===b);}); tipo=b.dataset.t; aplicar();};});
+  document.querySelectorAll('#ufs button').forEach(function(b){b.onclick=function(){
+    document.querySelectorAll('#ufs button').forEach(function(x){x.classList.toggle('on',x===b);}); uf=b.dataset.uf;
+    try{history.replaceState(null,'',uf?'#'+uf.toLowerCase():location.pathname);}catch(e){}
+    aplicar(); if(uf) window.scrollTo({top:document.querySelector('.barra').offsetTop,behavior:'smooth'});};});
+  var h=location.hash.slice(1).toUpperCase(), b=h&&document.querySelector('#ufs button[data-uf="'+h+'"]');
+  if(b) b.click();
+})();
 </script>
 </body>
 </html>
